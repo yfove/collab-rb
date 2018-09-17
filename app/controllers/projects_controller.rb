@@ -17,5 +17,8 @@ class ProjectsController < ApplicationController
   def destroy
   end
 
+  def index
+    @projects = Project.all
+  end
 
 end

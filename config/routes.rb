@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :projects
   resources :sessions, only: [:new, :create, :destroy]
+  root 'projects#index'
+  get 'projects' => 'projects#index'
+  get 'projects/:id' => 'projects#show'
 end

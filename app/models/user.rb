@@ -6,4 +6,9 @@ class User < ApplicationRecord
   has_many :projects, :through => :messages, dependent: :destroy
   has_many :projects, :through => :members, dependent: :destroy
 
+  validates :password, length: {minimum: 8}, on: :create
+  validates :password, confirmation: true, on: :create
+  validates :password_confirmation, presence: true, on: :create
+
+  validates :email, uniqueness: true
 end

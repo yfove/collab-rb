@@ -9,18 +9,55 @@
   </div>
 <% end %>
  <%= form_for(user) do |f| %>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
-   <p>
-    <%= f.label :password %><br>
-    <%= f.text_field :password%>
-  </p>
-   <p>
-    <%= f.label :password_confirmation %><br>
-    <%= f.text_field :password_confirmation %>
-  </p>
+ <p>
+   <%= f.label :email %><br>
+   <%= f.email_field :email %>
+ </p>
+ <p>
+   <%= f.label :password %><br>
+   <%= f.password_field :password%>
+ </p>
+ <p>
+   <%= f.label :password_confirmation %><br>
+   <%= f.password_field :password_confirmation %>
+ </p>
+ <p>
+   <%= f.label :first_name %><br>
+   <%= f.text_field :first_name %>
+ </p>
+ <p>
+   <%= f.label :last_name %><br>
+   <%= f.text_field :last_name %>
+ </p>
+ <p>
+   <%= f.label :email %><br>
+   <%= f.text_field :email %>
+ </p>
+ <p>
+   <%= f.label :bio %><br>
+   <%= f.text_field :bio %>
+ </p>
+ <p>
+   <%= f.label :age %><br>
+   <%= f.number_field :age %>
+ </p>
+ <p>
+   <%= f.label :year %><br>
+   <%= f.number_field :year %>
+ </p>
+ <p>
+   <%= f.label :institution %><br>
+   <%= f.text_field :institution %>
+ </p>
+ <p>
+   <%= f.label :job_field %><br>
+   <%= f.text_field :job_field %>
+ </p>
+ <p>
+   <%= f.label :interests %><br>
+   <%= f.text_field :interests %>
+ </p>
+
    <p>
     <%= f.submit "Save" %>
   </p>

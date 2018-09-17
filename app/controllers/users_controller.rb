@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new
 
     @user.email = params[:user][:email]
-    @user.password_digest = params[:user][:password]
+    @user.password_confirmation = params[:user][:password]
 
     if @user.save
       redirect_to '/projects/'

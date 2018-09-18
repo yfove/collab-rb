@@ -1,5 +1,5 @@
 <div class="welcome-msg">
-  <h1>Welcome to your profile, <%= @user.first_name %></h1>
+  <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
 </div>
 
 <div class="user-information">
@@ -18,3 +18,36 @@
   <h2><%= @user.first_name %>'s Bio</h2>
   <p><%= @user.bio %></p>
 </div>
+
+<% if @projects_owned.empty? == false %>
+  <h2><%= @user.first_name %>'s Projects</h2>
+  <% @projects_owned.each do |project_id| %>
+    <% @project = Project.find(project_id) %>
+    <div class="own-project">
+      <h3><%= @project.name %></h3>
+      <p><%= @project.category %></p>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @projects_joined.empty? == false %>
+  <h2><%= @user.first_name %> Joined These Projects</h2>
+  <% @projects_joined.each do |project_id| %>
+    <% @project = Project.find(project_id) %>
+    <div class="joined-project">
+      <h3><%= @project.name %></h3>
+      <p><%= @project.category %></p>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @projects_applied.empty? == false %>
+  <h2><%= @user.first_name %> Applied to These Projects</h2>
+  <% @projects_applied.each do |project_id| %>
+    <% @project = Project.find(project_id) %>
+    <div class="applied-project">
+      <h3><%= @project.name %></h3>
+      <p><%= @project.category %></p>
+    </div>
+  <% end %>
+<% end %>

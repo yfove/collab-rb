@@ -32,6 +32,25 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @owner = @user.members.where(approved: true, owner: true)
+    @joined = @user.members.where(approved: true, owner: false)
+    @applied = @user.members.where(approved: false, owner: false)
+    @projects_owned = []
+    @projects_joined = []
+    @projects_applied = []
+
+    @applied.each do |apply|
+      @projects_applied.push(apply.project_id)
+    end
+
+    @joined.each do |join|
+      @projects_joined.push(join.project_id)
+    end
+
+    @owner.each do |owned|
+      @projects_owned.push(owned.project_id)
+    end
+
   end
 
   def edit

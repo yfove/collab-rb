@@ -43,11 +43,3 @@ end
     project_id: Project.pluck(:id).sample
   )
 end
-
-User.create!(
-  first_name: Tyler,
-  last_name: Palef,
-  email: "tp@gmail.com",
-  password: 'password',
-  password_confirmation: 'password'
-)

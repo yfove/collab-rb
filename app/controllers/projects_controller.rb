@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @owner = User.find(@project.members.where(owner: true)[0].user_id)
   end
 
   def new

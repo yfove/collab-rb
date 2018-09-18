@@ -4,21 +4,26 @@ Message.destroy_all
 User.destroy_all
 
 20.times do
-  User.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.free_email,
-    password: 'password',
-    password_confirmation: 'password'
-  )
-end
+user = User.create!(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  email: Faker::Internet.free_email,
+  password: 'password',
+  password_confirmation: 'password'
+)
+project = user.projects.create!(
+  name: Faker::App.name,
+  description: Faker::Lorem.paragraph,
+  category: Faker::Beer.name
+)
 
-10.times do
-  Project.create!(
-    name: Faker::App.name,
-    description: Faker::Lorem.paragraph,
-    category: Faker::Beer.name
-  )
+user.members.create!(
+  approved: true,
+  owner: true,
+  user_id: user.id,
+  project_id: project.id
+)
+
 end
 
 15.times do

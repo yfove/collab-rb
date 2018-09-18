@@ -11,4 +11,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
   validates :email, uniqueness: true
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

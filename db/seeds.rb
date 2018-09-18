@@ -43,3 +43,23 @@ end
     project_id: Project.pluck(:id).sample
   )
 end
+
+tp = User.create!(
+  first_name: "Tyler",
+  last_name: "Palef",
+  email: 'tp@gmail.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+tpproject = tp.projects.create!(
+  name: 'Random',
+  description: "This is a fake project",
+  category: "Biology"
+)
+
+tp.members.create!(
+  approved: true,
+  owner: true,
+  user_id: tp.id,
+  project_id: tpproject.id
+)

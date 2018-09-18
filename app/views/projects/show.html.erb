@@ -2,7 +2,7 @@
 
 <h3>Owner</h3>
 <p>
-  <%= @project.members[0].user.name %>
+  <%= @owner.first_name.capitalize %> <%=@owner.last_name.capitalize %>
 </p>
 
 <h3>Collaborators</h3>

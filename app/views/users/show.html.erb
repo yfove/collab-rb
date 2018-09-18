@@ -1,0 +1,20 @@
+<div class="welcome-msg">
+  <h1>Welcome to your profile, <%= @user.first_name %></h1>
+</div>
+
+<div class="user-information">
+  <ul>
+    <li>Full name: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></li>
+    <li>Email Address: <%= @user.email %></li>
+    <li>Field of Work: <%= @user.job_field %></li>
+    <li>Age: <%= @user.age %></li>
+    <li>Year of Study: <%= @user.year %></li>
+    <li>Institution: <%= @user.institution %></li>
+    <li>Interests: <%= @user.interests %></li>
+  </ul>
+</div>
+
+<div class="user-bio">
+  <h2><%= @user.first_name %>'s Bio</h2>
+  <p><%= @user.bio %></p>
+</div>

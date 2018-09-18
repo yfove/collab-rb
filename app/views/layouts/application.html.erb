@@ -4,19 +4,32 @@
     <title>Collabz</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="userinfo">
-      <% if current_user %>
-      Signed in as <%= current_user.email %>. <%= link_to 'Log out', session_path("current"), :method => :delete %>
-      <% else %>
-      <%= link_to 'Log in', new_session_path %> or <%= link_to 'Sign up', new_user_path %>
-      <% end %>
-    </p>
+    <header>
+      <h1>where the navigation bar will be!</h1>
+      <p><%= link_to "Home", root_path %></p>
+
+      <p class="userinfo">
+
+        <% if current_user %>
+        Welcome <%= current_user.name %>! <br>
+        <%= link_to 'Log out', session_path(current_user), method: :delete %> <br>
+        <%= link_to 'Create Project', new_project_url %>
+        <br>we don't have a projects.new page yet!
+
+        <% else %>
+        <%= link_to 'Sign up', new_user_path %> |
+        <%= link_to 'Log in', new_session_path %>
+        <% end %>
+      </p>
+
+
+    </header>
+
     <%= yield %>
   </body>
 </html>

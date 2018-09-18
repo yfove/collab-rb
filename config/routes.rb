@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
-  resources :projects
+  resources :projects, only: [:index, :new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
+
   root 'projects#index'
-  get 'projects' => 'projects#index'
-  get 'projects/:id' => 'projects#show'
 end

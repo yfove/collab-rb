@@ -16,8 +16,14 @@ class ProjectsController < ApplicationController
     @project.name = params[:project][:name]
     @project.category = params[:project][:category]
     @project.user_id = current_user.id
+    @member = Member.new
+    @member.user_id = current_user.id
+    @member.approved = true
+    @member.owner = true
+    @member.project_id = @project.id
 
-    if @project.save
+
+    if @project.save && @member.save
       redirect_to projects_url
     else
       flash[:alert] = "Invalid project information"

@@ -1,10 +1,13 @@
 class ProjectsController < ApplicationController
+  before_action :ensure_logged_in, except: [:show, :index]
+  before_action :ensure_user_owns_project, only: [:edit]
+
   def index
     @projects = Project.all
   end
 
   def show
-    @project = Project.find(params[:id])
+    load_project
     @owner = User.find(@project.members.where(owner: true)[0].user_id)
   end
 
@@ -30,6 +33,19 @@ class ProjectsController < ApplicationController
       flash[:alert] = "Invalid project information"
       render :new
     end
+   end
+
+   private
+
+   def ensure_user_owns_project
+     unless current_user == @project.user
+       flash[:alert] = "Access Denied. Please Log In"
+       redirect_to new_sessions_url
+     end
+   end
+
+   def load_project
+     @project = Project.find(params[:id])
    end
 
 end

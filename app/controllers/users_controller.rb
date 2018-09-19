@@ -16,7 +16,13 @@ class UsersController < ApplicationController
     @user.year = params[:user][:year]
     @user.institution = params[:user][:institution]
     @user.job_field = params[:user][:job_field]
-    @user.interests = params[:user][:interests]
+    
+    interest_string = params[:user][:interests]
+
+    interest_arr = interest_string.split(' ')
+    interest_arr.each do |interest|
+      @user.interests.push(interest)
+    end
 
 
     if @user.save
@@ -72,12 +78,17 @@ class UsersController < ApplicationController
     @user.year = params[:user][:year]
     @user.institution = params[:user][:institution]
     @user.job_field = params[:user][:job_field]
-    @user.interests = params[:user][:interests]
+
+    interest_string = params[:user][:interests]
+
+    interest_arr = interest_string.split(' ')
+    interest_arr.each do |interest|
+      @user.interests.push(interest)
+    end
 
     if @user.save
       flash.now[:notice] = "You have updated your information."
       redirect_to user_url(@user)
-
     else
       flash.now[:notice] = "Failed to edit information."
       render :edit

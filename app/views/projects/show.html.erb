@@ -1,4 +1,4 @@
-<h1><%= @project.name %></h1>
+<h1><%= @project.name.titlecase %></h1>
 
 <h3>Owner</h3>
 <p>
@@ -10,7 +10,7 @@
   <% @project.members.each do |member| %>
     <% if member.approved == true %>
       <p>
-        <%= member.user.name %>
+        <%= member.user.name.titlecase %>
       </p>
     <% end %>
   <% end %>
@@ -19,6 +19,6 @@
 <% if @project.description %>
   <h3>Description</h3>
   <p>
-    <%= @project.description %>
+    <%= @project.description.humanize %>
   </p>
 <% end %>

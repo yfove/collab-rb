@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
   def index
     @projects = Project.all
   end
@@ -6,17 +7,19 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @owner = User.find(@project.members.where(owner: true)[0].user_id)
+    @categories = @project.category
   end
 
   def new
     @project = Project.new
+    @categories = ["biology", "chemistry"]
   end
 
   def create
     @project = Project.new
     @project.name = params[:project][:name]
+    @project.description = params[:project][:description]
     @project.category = params[:project][:category]
-    @project.user_id = current_user.id
     @member = Member.new
     @member.user_id = current_user.id
     @member.approved = true

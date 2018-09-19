@@ -15,8 +15,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new
     @project.name = params[:project][:name]
-    @project.category = params[:project][:category]
-    @project.user_id = current_user.id
+    @project.description = params[:project][:description]
     @member = Member.new
     @member.user_id = current_user.id
     @member.approved = true
@@ -24,10 +23,16 @@ class ProjectsController < ApplicationController
     @member.project_id = @project.id
 
 
-    if @project.save && @member.save
+    if @project.save
+      @member = Member.new
+      @member.user_id = current_user.id
+      @member.approved = true
+      @member.owner = true
+      @member.project_id = @project.id
+      @member.save
       redirect_to projects_url
     else
-      flash[:alert] = "Invalid project information"
+      flash[:notice] = "Invalid project information"
       render :new
     end
    end

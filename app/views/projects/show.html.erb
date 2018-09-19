@@ -12,7 +12,7 @@
 
 <h3>Owner</h3>
 <p>
-  <%= @owner.first_name.capitalize %> <%=@owner.last_name.capitalize %>
+  <%= link_to (@owner.first_name.capitalize + ' ' +@owner.last_name.capitalize), user_path(@owner) %>
 </p>
 
 <h3>Collaborators</h3>
@@ -20,7 +20,7 @@
   <% @project.members.each do |member| %>
     <% if member.approved == true %>
       <p>
-        <%= member.user.name.titlecase %>
+        <%= link_to (member.user.name.titlecase), user_path(member.user_id) %>
       </p>
     <% end %>
   <% end %>

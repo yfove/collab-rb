@@ -16,31 +16,19 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.new
+    load_project
   end
 
   def update
-    @project = Project.new
+    load_project
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
-    @member = Member.new
-    @member.user_id = current_user.id
-    @member.approved = true
-    @member.owner = true
-    @member.project_id = @project.id
-
 
     if @project.save
-      @member = Member.new
-      @member.user_id = current_user.id
-      @member.approved = true
-      @member.owner = true
-      @member.project_id = @project.id
-      @member.save
-      redirect_to projects_url
+      redirect_to project_url(@project)
     else
       flash[:notice] = "Invalid project information"
-      render :new
+      render :edit
     end
   end
 
@@ -72,9 +60,10 @@ class ProjectsController < ApplicationController
    private
 
    def ensure_user_owns_project
-     unless current_user == @project.user
+     load_project
+     unless current_user == @project.members.where(owner: true).first.user_id
        flash[:alert] = "Access Denied. Please Log In"
-       redirect_to new_sessions_url
+
      end
    end
 

@@ -72,9 +72,10 @@ class ProjectsController < ApplicationController
    private
 
    def ensure_user_owns_project
-     unless current_user == @project.user
+     load_project
+     unless current_user == @project.members.where(owner: true).first.user_id
        flash[:alert] = "Access Denied. Please Log In"
-       redirect_to new_sessions_url
+
      end
    end
 

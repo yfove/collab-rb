@@ -57,6 +57,12 @@ class ProjectsController < ApplicationController
     end
    end
 
+   def destroy
+     load_project
+     @project.destroy
+     redirect_to projects_url
+   end
+
    private
 
    def ensure_user_owns_project

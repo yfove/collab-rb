@@ -1,9 +1,9 @@
 class Project < ApplicationRecord
-  has_many :members
-  has_many :messages
+  has_many :members, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
-  has_many :users, :through => :members, dependent: :destroy
-  has_many :users, :through => :messages, dependent: :destroy
+  has_many :users, :through => :members
+  has_many :users, :through => :messages
 
   validates :name, :description, presence: true
 

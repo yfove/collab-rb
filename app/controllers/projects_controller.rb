@@ -15,6 +15,35 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def edit
+    @project = Project.new
+  end
+
+  def update
+    @project = Project.new
+    @project.name = params[:project][:name]
+    @project.description = params[:project][:description]
+    @member = Member.new
+    @member.user_id = current_user.id
+    @member.approved = true
+    @member.owner = true
+    @member.project_id = @project.id
+
+
+    if @project.save
+      @member = Member.new
+      @member.user_id = current_user.id
+      @member.approved = true
+      @member.owner = true
+      @member.project_id = @project.id
+      @member.save
+      redirect_to projects_url
+    else
+      flash[:notice] = "Invalid project information"
+      render :new
+    end
+  end
+
   def create
     @project = Project.new
     @project.name = params[:project][:name]

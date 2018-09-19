@@ -1,7 +1,10 @@
 <% if current_user %>
   <% if current_user.id == @project.members.where(owner: true).first.user_id %>
     <%= link_to 'Edit this project', edit_project_path(@project) %> | <%=
-    link_to 'Delete', project_path(@project), :method => :delete %>
+    link_to 'Delete', project_path(@project), :method => :delete %> |
+    <%=
+    link_to 'Back', projects_url %>
+
   <% end %>
 <% end %>
 

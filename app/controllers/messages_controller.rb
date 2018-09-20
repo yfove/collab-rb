@@ -17,4 +17,11 @@ class MessagesController < ApplicationController
       render 'projects/show'
     end
   end
+
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+
+    redirect_to project_url(params[:project_id]), notice: 'Message deleted'
+  end
 end

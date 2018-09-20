@@ -16,13 +16,16 @@ class UsersController < ApplicationController
     @user.year = params[:user][:year]
     @user.institution = params[:user][:institution]
     @user.job_field = params[:user][:job_field]
-    
+
     interest_string = params[:user][:interests]
 
-    interest_arr = interest_string.split(' ')
-    interest_arr.each do |interest|
-      @user.interests.push(interest)
+    if interest_string
+      interest_arr = interest_string.split(' ')
+      interest_arr.each do |interest|
+        @user.interests.push(interest)
+      end
     end
+
 
 
     if @user.save
@@ -81,9 +84,11 @@ class UsersController < ApplicationController
 
     interest_string = params[:user][:interests]
 
-    interest_arr = interest_string.split(' ')
-    interest_arr.each do |interest|
-      @user.interests.push(interest)
+    if interest_string
+      interest_arr = interest_string.split(' ')
+      interest_arr.each do |interest|
+        @user.interests.push(interest)
+      end
     end
 
     if @user.save

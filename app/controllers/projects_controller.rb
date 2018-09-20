@@ -8,7 +8,10 @@ class ProjectsController < ApplicationController
 
   def show
     load_project
-    @owner = User.find(@project.members.where(owner: true)[0].user_id)
+    @owner = User.find(@project.members.where(owner: true).first.user_id)
+    @message = Message.new
+    @collaborators = @project.members.where(approved: true)
+
 
     if @project.messages.empty? == false
       @visitor_msgs = @project.messages.where(private: false)

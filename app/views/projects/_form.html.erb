@@ -19,6 +19,12 @@
     <%= f.text_field :description %>
   </p>
   <p>
+    <% Category.all.each do |category| %>
+      <%= check_box_tag "project[category_ids][]", category.id %>
+      <%= category.category_type %> <br>
+    <% end %>
+  </p>
+  <p>
     <%= f.submit "Add Project" %>
   </p>
 <% end %>

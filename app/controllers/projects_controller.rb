@@ -1,6 +1,4 @@
 class ProjectsController < ApplicationController
-  before_action :ensure_logged_in, except: [:show, :index]
-  before_action :ensure_user_owns_project, only: [:edit]
 
   def index
     @projects = Project.all
@@ -20,6 +18,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @categories = ["biology", "chemistry","math", "geography"]
   end
 
   def edit
@@ -43,6 +42,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
+    @project.category = params[:project][:category]
     @member = Member.new
     @member.user_id = current_user.id
     @member.approved = true

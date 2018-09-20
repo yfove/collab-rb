@@ -2,6 +2,13 @@ Member.destroy_all
 Project.destroy_all
 Message.destroy_all
 User.destroy_all
+Category.destroy_all
+Categorization.destroy_all
+
+Category.create!(category_type: "Biology")
+Category.create!(category_type: "Chemisty")
+Category.create!(category_type: "Math")
+
 
 20.times do
 user = User.create!(

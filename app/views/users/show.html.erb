@@ -1,6 +1,8 @@
 <div class="welcome-msg">
   <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
-  <%= link_to 'Edit Profile', edit_user_path %>
+  <% if current_user == @user %>
+    <%= link_to 'Edit Profile', edit_user_path %>
+  <% end %>
 </div>
 
 <div class="user-information">
@@ -11,43 +13,51 @@
     <li>Age: <%= @user.age %></li>
     <li>Year of Study: <%= @user.year %></li>
     <li>Institution: <%= @user.institution %></li>
-    <li>Interests: <%= @user.interests %></li>
+    <li>Interests:
+      <% @user.interests.each do |interest| %>
+        <% if interest != @user.interests.last %>
+          <%= interest.capitalize %>,
+        <% else %>
+          <%= interest.capitalize %>
+        <% end%>
+      <% end %>
+    </li>
   </ul>
 </div>
 
 <div class="user-bio">
-  <h2><%= @user.first_name %>'s Bio</h2>
+  <h2><%= @user.first_name.capitalize %>'s Bio</h2>
   <p><%= @user.bio %></p>
 </div>
 
 <% if @projects_owned.empty? == false %>
-  <h2><%= @user.first_name %>'s Projects</h2>
+  <h2><%= @user.first_name.capitalize %>'s Projects</h2>
   <% @projects_owned.each do |project_id| %>
     <% @project = Project.find(project_id) %>
     <div class="own-project">
-      <h3><%= @project.name %></h3>
+      <h3><%= link_to @project.name, project_path(@project) %></h3>
       <p><%= @project.category %></p>
     </div>
   <% end %>
 <% end %>
 
 <% if @projects_joined.empty? == false %>
-  <h2><%= @user.first_name %> Joined These Projects</h2>
+  <h2><%= @user.first_name.capitalize %> Joined These Projects</h2>
   <% @projects_joined.each do |project_id| %>
     <% @project = Project.find(project_id) %>
     <div class="joined-project">
-      <h3><%= @project.name %></h3>
+      <h3><%= link_to @project.name, project_path(@project) %></h3>
       <p><%= @project.category %></p>
     </div>
   <% end %>
 <% end %>
 
 <% if @projects_applied.empty? == false %>
-  <h2><%= @user.first_name %> Applied to These Projects</h2>
+  <h2><%= @user.first_name.capitalize %> Applied to These Projects</h2>
   <% @projects_applied.each do |project_id| %>
     <% @project = Project.find(project_id) %>
     <div class="applied-project">
-      <h3><%= @project.name %></h3>
+      <h3><%= link_to @project.name, project_path(@project) %></h3>
       <p><%= @project.category %></p>
     </div>
   <% end %>

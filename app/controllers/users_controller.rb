@@ -16,16 +16,22 @@ class UsersController < ApplicationController
     @user.year = params[:user][:year]
     @user.institution = params[:user][:institution]
     @user.job_field = params[:user][:job_field]
-    @user.interests = params[:user][:interests]
+    
+    interest_string = params[:user][:interests]
+
+    interest_arr = interest_string.split(' ')
+    interest_arr.each do |interest|
+      @user.interests.push(interest)
+    end
 
 
     if @user.save
-      flash.now[:alert] = ["You have successfully created an account"]
+      flash.now[:notice] = "You have successfully created an account"
       session[:user_id] = @user.id
       redirect_to projects_url(@user.id)
 
     else
-      flash.now[:alert] = ["Failed to create an account"]
+      flash.now[:notice] = "Failed to create an account"
       render :new
     end
   end
@@ -58,6 +64,36 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.first_name = params[:user][:first_name]
+    @user.last_name = params[:user][:last_name]
+    @user.email = params[:user][:email]
+    @user.bio = params[:user][:bio]
+    @user.age = params[:user][:age]
+    @user.year = params[:user][:year]
+    @user.institution = params[:user][:institution]
+    @user.job_field = params[:user][:job_field]
+
+    interest_string = params[:user][:interests]
+
+    interest_arr = interest_string.split(' ')
+    interest_arr.each do |interest|
+      @user.interests.push(interest)
+    end
+
+    if @user.save
+      flash.now[:notice] = "You have updated your information."
+      redirect_to user_url(@user)
+    else
+      flash.now[:notice] = "Failed to edit information."
+      render :edit
+    end
+
   end
 
 end

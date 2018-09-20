@@ -34,13 +34,29 @@
 <% end %>
 
 <% if @visitor_msgs %>
-  <div class="vistor-msgs">
-    <h3>Visitor Messages</h3>
-    <% @visitor_msgs.each do |msg| %>
-      <div class="message">
-        <p><%= msg.content %></p>
-        <p>Posted by <%= User.find(msg.user_id).first_name.capitalize %> <%= User.find(msg.user_id).last_name.capitalize %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
-      </div>
-    <% end %>
-  </div>
+  <% if @visitor_msgs.empty? == false %>
+    <div class="vistor-msgs">
+      <h3>Visitor Messages</h3>
+      <% @visitor_msgs.each do |msg| %>
+        <div class="message">
+          <p><%= msg.content %></p>
+          <p>Posted by <%= User.find(msg.user_id).first_name.capitalize %> <%= User.find(msg.user_id).last_name.capitalize %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @private_msgs %>
+  <% if @private_msgs.empty? == false %>
+    <div class="private-msgs">
+      <h3>Private Messages</h3>
+      <% @private_msgs.each do |msg| %>
+        <div class="message">
+          <p><%= msg.content %></p>
+          <p>Posted by <%= User.find(msg.user_id).first_name.capitalize %> <%= User.find(msg.user_id).last_name.capitalize %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

@@ -9,9 +9,13 @@ class ProjectsController < ApplicationController
   def show
     load_project
     @owner = User.find(@project.members.where(owner: true)[0].user_id)
+
     if @project.messages.empty? == false
       @visitor_msgs = @project.messages.where(private: false)
+      @private_msgs = @project.messages.where(private: true)
     end
+
+
   end
 
   def new

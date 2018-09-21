@@ -1,0 +1,35 @@
+Chat API (DMs)
+  - maybe use Slack API for communication?
+  - personally not a fan of slack but if there's a free api which doesn't require the kind of painful login slack wants
+  - discord api is a possible solution.... it's like slack but not crap
+
+Deploy
+  - We have to deploy before Wednesday in case we run into issues, which, apparently, there's a good chance we will
+
+Styling
+  - prettying up the site
+    -> Curtis/David working on it
+  - side bar
+  - hamburger menu button
+  - project#index organization method and appearance
+    -- maybe do blocks for each project with a snippet of each description (like the first 20 characters of the description with a ... at the end)
+  - project#index page shows your owned projects at the top, then the projects you collaborated on under/next to it... maybe like split like a block/column, and then the rest of the unaffiliated projects underneath
+
+Logo
+  -> Curtis working on it
+
+Applications Logic
+  -> Joey working on it
+
+Testing
+
+
+Validations
+
+
+Projects
+  - Looking For: && Apply Link
+    -> Joey
+  - Relevant Links to be added by user
+  ~ Add a To-Do List (optional)
+  

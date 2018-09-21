@@ -14,14 +14,10 @@
     <h3>NO PROJECTS</h3>
   <% else %>
     <% @projects.each do |project| %>
-      <ul>
-        <li>
-          <div class="">
-            <p>
-              <%= link_to "#{project.name}", project_path(project) %>
-            </p>
-          </div>
-        </li>
-      </ul>
+      <div class="">
+        <p>
+          <%= link_to "#{project.name}", project_path(project) %>
+        </p>
+      </div>
     <% end %>
   <% end %>

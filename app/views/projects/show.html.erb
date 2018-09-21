@@ -1,9 +1,7 @@
 <% if current_user %>
   <% if current_user.id == @project.members.where(owner: true).first.user_id %>
-    <%= link_to 'Edit this project', edit_project_path(@project) %> | <%=
-    link_to 'Delete', project_path(@project), :method => :delete %> |
-    <%=
-    link_to 'Back', projects_url %>
+    <%= link_to 'Edit this project', edit_project_path(@project) %> | <%=link_to 'Delete', project_path(@project), :method => :delete %> |
+    <%=link_to 'Back', projects_url %>
 
   <% end %>
 <% end %>
@@ -113,3 +111,5 @@
     <h3><%= link_to "Applicants", project_applicants_path(@project.id) %></h3>
   <% end %>
 <% end %>
+
+<h3>Looking For:</h3>

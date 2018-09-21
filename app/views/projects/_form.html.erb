@@ -19,6 +19,8 @@
     <%= f.text_field :description %>
   </p>
 
+  
+
   <%= f.collection_check_boxes :categories, Category.all, :id, :category_type, include_hidden: false %>
 
   <p>

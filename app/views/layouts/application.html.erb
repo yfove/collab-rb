@@ -1,100 +1,101 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Collabz</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
- <href="https://fonts.googleapis.com/css?family=Noto+Serif|Raleway" rel="stylesheet">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  <head>
+    <title>Collabz</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <href="https://fonts.googleapis.com/css?family=noto+serif|raleway" rel="stylesheet">
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <% if current_page?(controller: 'welcome', action: 'index') == false %>
-    <header>
-      <% if flash[:notice] %>
-        <div class="notice"><%= flash[:notice] %></div>
-      <% end %>
-      <div class="top-nav">
-        <div class="top-nav-logo">
-          <%= link_to 'Project Space', projects_path, class: "logo" %>
-        </div>
+    <body>
+      <% if current_page?(controller: 'welcome', action: 'index') == false %>
+        <header>
+          <% if flash[:notice] %>
+            <div class="notice"><%= flash[:notice] %></div>
+          <% end %>
+          <div class="top-nav">
+            <div class="top-nav-logo">
+              <%= link_to 'Project Space', projects_path, class: "logo" %>
+            </div>
 
-      <nav class="main-nav">
-        <ul>
-          <% if current_user %>
+            <nav class="main-nav">
+              <ul>
+                <% if current_user %>
 
-          <li>
-            <%= link_to 'Home', projects_path, class: "current" %>
-            <li>
-              <%= link_to 'Profile', user_path(current_user) %>
-            </li>
-            <li>
-              <%= link_to 'Create Project', new_project_url %>
-            </li>
-            <li>
-              <%= link_to 'Log out', session_path(current_user), method: :delete %>
-            </li>
-            <% else %>
-            <li>
-              <%= link_to 'Sign up', new_user_path %>
-            </li>
-            <li>
-              <%= link_to 'Log in', new_session_path %>
-            </li>
-            <% end %>
-          </ul>
-      </nav>
-    </div>
-    </header>
-    <%= yield %>
-  </body>
-  <footer>
-    <section class="footer-top">
-      <div class="bottom-nav">
-        <nav class="nav"></nav>
-          <ul>
-            <li>
+                  <li>
+                    <%= link_to 'Home', projects_path, class: "current" %>
+                    <li>
+                      <%= link_to 'Profile', user_path(current_user) %>
+                    </li>
+                    <li>
+                      <%= link_to 'Create Project', new_project_url %>
+                    </li>
+                    <li>
+                      <%= link_to 'Log out', session_path(current_user), method: :delete %>
+                    </li>
+                  <% else %>
+                    <li>
+                      <%= link_to 'Sign up', new_user_path %>
+                    </li>
+                    <li>
+                      <%= link_to 'Log in', new_session_path %>
+                    </li>
+                  <% end %>
+                </ul>
+              </nav>
+            </div>
+          </header>
+        <% end %>
+        <%= yield %>
+      </body>
+      <footer>
+        <section class="footer-top">
+          <div class="bottom-nav">
+            <nav class="nav"></nav>
+            <ul>
+              <li>
                 <%= link_to 'Home', projects_path, class: "current" %>
-            </li>
-            <li>
-              <%= link_to "about" %>
-            </li>
-            <li>
-              <%= link_to "contact" %>
-            </li>
-            <li>
-              <%= link_to "careers" %>
-            </li>
-            <li>
-              <%= link_to "repo" %>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="footer-bottom">
-        <div class="copyright">
-          <p>&copy;2018 Project Space</p>
+              </li>
+              <li>
+                <%= link_to "about" %>
+              </li>
+              <li>
+                <%= link_to "contact" %>
+              </li>
+              <li>
+                <%= link_to "careers" %>
+              </li>
+              <li>
+                <%= link_to "repo" %>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <div class="social-media-flex">
-          <ul>
-            <li>
-              <i class="fab fa-facebook"></i>
-            </li>
-            <li>
-              <i class="fab fa-instagram"></i>
-            </li>
-            <li>
-              <i class="fab fa-twitter"></i>
-            </li>
-            <li>
-              <i class="fab fa-google-plus-g"></i>
-            </li>
-          </ul>
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy;2018 Project Space</p>
+          </div>
+          <div class="social-media-flex">
+            <ul>
+              <li>
+                <i class="fab fa-facebook"></i>
+              </li>
+              <li>
+                <i class="fab fa-instagram"></i>
+              </li>
+              <li>
+                <i class="fab fa-twitter"></i>
+              </li>
+              <li>
+                <i class="fab fa-google-plus-g"></i>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </footer>
-</html>
+    </footer>
+  </html>

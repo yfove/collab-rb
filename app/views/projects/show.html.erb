@@ -108,6 +108,8 @@
   <% end %>
 <% end %>
 
-<% if current_user.id == @project.members.where(owner: true).first.user_id %>
-  <h3><%= link_to "Applicants", project_applicants_path(@project.id) %></h3>
+<% if current_user %>
+  <% if current_user.id == @project.members.where(owner: true).first.user_id %>
+    <h3><%= link_to "Applicants", project_applicants_path(@project.id) %></h3>
+  <% end %>
 <% end %>

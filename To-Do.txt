@@ -14,6 +14,9 @@ Styling
   - project#index organization method and appearance
     -- maybe do blocks for each project with a snippet of each description (like the first 20 characters of the description with a ... at the end)
   - project#index page shows your owned projects at the top, then the projects you collaborated on under/next to it... maybe like split like a block/column, and then the rest of the unaffiliated projects underneath
+  - filter search button needs some styling
+    -- could be at the top, left of the HOME button
+  - add a background picture to get rid of the "white space"
 
 Logo
   -> Curtis working on it
@@ -30,6 +33,15 @@ Validations
 Projects
   - Looking For: && Apply Link
     -> Joey
-  - Relevant Links to be added by user
-  ~ Add a To-Do List (optional)
-  
+  - accept applicant link
+    -> Joey
+  - relevant Links to be added by user
+  ~ add a To-Do List for owner/collab to see (optional)
+
+
+Search Function
+
+
+Header/Nav/Footer
+  - Top link leads back to the landing page while the home button is the projects#index
+  - about, contact, careers, repo need pages

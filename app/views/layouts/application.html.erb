@@ -11,6 +11,7 @@
 </head>
 
   <body>
+    <% if current_page?(controller: 'welcome', action: 'index') == false %>
     <header>
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
@@ -47,8 +48,6 @@
       </nav>
     </div>
     </header>
-
-
     <%= yield %>
   </body>
   <footer>

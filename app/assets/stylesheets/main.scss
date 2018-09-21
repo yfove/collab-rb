@@ -81,11 +81,12 @@ header {
 // Footer bar and nav bar
 
 footer {
-  position: relative;
+  position: fixed;
   bottom: 0;
   height: 100px;
   background: --dark;
   width: 100%
+
 }
 
 .bottom-nav {
@@ -137,8 +138,14 @@ footer {
 .copyright {
   color:var(--light);
   float: left;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight:bold;
+  padding-left: 15px;
+}
+
+.copyright p{
+  text-transform: uppercase;
+  font-weight: lighter;
 }
 
 .social-media-flex li{

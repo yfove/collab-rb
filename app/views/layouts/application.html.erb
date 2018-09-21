@@ -4,8 +4,8 @@
   <title>Collabz</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  <href="https://fonts.googleapis.com/css?family=Noto+Serif|Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+ <href="https://fonts.googleapis.com/css?family=Noto+Serif|Raleway" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -38,7 +38,7 @@
             </li>
             <% else %>
             <li>
-              <%= link_to 'Sign up', new_user_path %> |
+              <%= link_to 'Sign up', new_user_path %>
             </li>
             <li>
               <%= link_to 'Log in', new_session_path %>
@@ -48,10 +48,53 @@
       </nav>
     </div>
     </header>
-    <% end %>
     <%= yield %>
   </body>
   <footer>
-    
+    <section class="footer-top">
+      <div class="bottom-nav">
+        <nav class="nav"></nav>
+          <ul>
+            <li>
+                <%= link_to 'Home', projects_path, class: "current" %>
+            </li>
+            <li>
+              <%= link_to "about" %>
+            </li>
+            <li>
+              <%= link_to "contact" %>
+            </li>
+            <li>
+              <%= link_to "careers" %>
+            </li>
+            <li>
+              <%= link_to "repo" %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>&copy;2018 Project Space</p>
+        </div>
+        <div class="social-media-flex">
+          <ul>
+            <li>
+              <i class="fab fa-facebook"></i>
+            </li>
+            <li>
+              <i class="fab fa-instagram"></i>
+            </li>
+            <li>
+              <i class="fab fa-twitter"></i>
+            </li>
+            <li>
+              <i class="fab fa-google-plus-g"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
   </footer>
 </html>

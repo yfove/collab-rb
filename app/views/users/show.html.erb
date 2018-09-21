@@ -1,4 +1,4 @@
-<div class="welcome-msg">
+<div class="user-name">
   <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
   <% if current_user == @user %>
     <%= link_to 'Edit Profile', edit_user_path %>

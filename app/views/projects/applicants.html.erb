@@ -3,11 +3,7 @@
 <% @applicants.each do |applicants| %>
   <% if applicants.user != @project.members.where(owner: true).first.user %>
     <p>
-      <ul>
-        <li>
-          <%= link_to "#{applicants.user.name}", user_path(applicants.user.id) %>
-        </li>
-      </ul>
+      <%= link_to "#{applicants.user.name}", user_path(applicants.user.id) %>
     </p>
   <% end %>
 <% end %>

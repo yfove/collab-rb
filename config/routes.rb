@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources :users
   resources :projects do
     resources :messages, except: [:index, :new, :show]
+    get "/applicants" => "projects#applicants", as: "applicants"
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :categories, only: [:show, :create]
   root 'projects#index'
+
 end

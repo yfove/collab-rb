@@ -19,8 +19,6 @@ Category.create!(category_type: "Fine Arts")
 Category.create!(category_type: "Music")
 Category.create!(category_type: "Film Studies")
 
-
-
 20.times do
 user = User.create!(
   first_name: Faker::Name.first_name,
@@ -52,13 +50,6 @@ end
   )
 end
 
-50.times do
-  Categorization.create!(
-    category_id: Category.pluck(:id).sample,
-    project_id: Project.pluck(:id).sample
-  )
-end
-
 15.times do
   Member.create!(
     approved: false,
@@ -86,3 +77,10 @@ tp.members.create!(
   user_id: tp.id,
   project_id: tpproject.id
 )
+
+50.times do
+  Categorization.create!(
+    category_id: Category.pluck(:id).sample,
+    project_id: Project.pluck(:id).sample
+  )
+end

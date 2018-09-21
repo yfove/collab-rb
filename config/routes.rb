@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resources :messages, except: [:index, :new, :show]
   end
   resources :sessions, only: [:new, :create, :destroy]
-
+  resources :categories, only: [:show, :create]
   root 'projects#index'
 end

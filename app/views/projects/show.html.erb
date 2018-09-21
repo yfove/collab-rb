@@ -10,6 +10,7 @@
 
 <h1><%= @project.name.titlecase %></h1>
 
+
 <h3>Owner</h3>
 <p>
   <%= link_to (@owner.first_name.capitalize + ' ' +@owner.last_name.capitalize), user_path(@owner) %>
@@ -30,6 +31,15 @@
   <h3>Description</h3>
   <p>
     <%= @project.description.humanize %>
+  </p>
+<% end %>
+
+<% if @categories %>
+  <h3>Categories</h3>
+  <p>
+    <% @categories.each do |category| %>
+      <%= category.category_type %> <br>
+    <% end %>
   </p>
 <% end %>
 

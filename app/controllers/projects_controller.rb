@@ -5,23 +5,21 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    load_project
+    load_project ##this returns @project
     @owner = User.find(@project.members.where(owner: true).first.user_id)
     @message = Message.new
     @collaborators = @project.members.where(approved: true)
-
+    @categories = @project.categories
 
     if @project.messages.empty? == false
       @visitor_msgs = @project.messages.where(private: false)
       @private_msgs = @project.messages.where(private: true)
     end
-
-
   end
 
   def new
     @project = Project.new
-    @categories = ["biology", "chemistry","math", "geography"]
+    @categories = Category.all
   end
 
   def edit
@@ -32,6 +30,15 @@ class ProjectsController < ApplicationController
     load_project
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
+    @categories = params[:project][:categories]
+    Categorization.all.where(project_id: @project.id).destroy_all
+
+    @categories.each do |category|
+      categorization = Categorization.new
+      categorization.project = @project
+      categorization.category_id = category
+      categorization.save
+    end
 
     if @project.save
       redirect_to project_url(@project)
@@ -42,24 +49,26 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    puts params
     @project = Project.new
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
-    @project.category = params[:project][:category]
+    @categories = params[:project][:categories]
+
     @member = Member.new
-    @member.user_id = current_user.id
+    @member.user = current_user
     @member.approved = true
     @member.owner = true
-    @member.project_id = @project.id
+    @member.project = @project
 
+    @categories.each do |category|
+      categorization = Categorization.new
+      categorization.project = @project
+      categorization.category_id = category
+      categorization.save
+    end
 
-    if @project.save
-      @member = Member.new
-      @member.user_id = current_user.id
-      @member.approved = true
-      @member.owner = true
-      @member.project_id = @project.id
-      @member.save
+    if @project.save && @member.save
       redirect_to projects_url
     else
       flash[:notice] = "Invalid project information"

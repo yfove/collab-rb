@@ -7,5 +7,7 @@ class Project < ApplicationRecord
 
   validates :name, :description, presence: true
 
-  has_many :categories
+  has_many :categorizations
+  has_many :categories, through: :categorizations
+
 end

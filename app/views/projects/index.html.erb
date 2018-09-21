@@ -1,5 +1,12 @@
 <h1>ProjectSpace</h1>
 
+<p>
+  <%= form_tag categories_path, method: :post do %>
+    <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "category_type") %>
+    <%= submit_tag 'Filter by Category' %>
+  <% end %>
+</p>
+
 <% if @projects.length == 0 %>
   <h3>NO PROJECTS</h3>
 <% else %>

@@ -1,0 +1,5 @@
+<h1><%= @category.category_type %></h1>
+
+<% @category.projects.each do |project| %>
+  <h4><%= link_to project.name, project_path(project)%></h4>
+<% end %>

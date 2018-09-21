@@ -59,11 +59,11 @@ header {
   background: var(--light);
   display: block;
   text-decoration: none;
-  padding: 0.2rem;
+  padding: 0.2em;
   text-align: center;
   color: var(--dark);
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: 0.7em;
   box-shadow: var(--shadow);
   letter-spacing: 1px;
 }
@@ -76,4 +76,80 @@ header {
 .title {
   text-align: center;
   width: 100%;
+}
+
+// Footer bar and nav bar
+
+footer {
+  position: relative;
+  bottom: 0;
+  height: 100px;
+  background: --dark;
+  width: 100%
+}
+
+.bottom-nav {
+  text-align: center;
+}
+
+.bottom-nav a {
+  background: var(--light);
+  display: block;
+  text-decoration: none;
+  padding: 0.2em;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 0.7em;
+  box-shadow: var(--shadow);
+  letter-spacing: 1px;
+}
+
+.bottom-nav ul{
+  list-style: none;
+  margin: 0 6px;
+  display: flex;
+  justify-content: space-around;
+  float: none;
+  background-color: --engage;
+  padding-top: 20px;
+  border-top: 1px solid black;
+}
+
+.bottom-nav a:hover {
+  color: var(--engage);
+  font-weight: bold;
+}
+
+// bottom flex bar
+
+.copyright {
+  font-size: 0.9em;
+}
+
+.footer-bottom {
+  background-color: var(--dark);
+  position: relative;
+  bottom: 0;
+  height: 40px;
+}
+
+.copyright {
+  color:var(--light);
+  float: left;
+  font-size: 0.9rem;
+  font-weight:bold;
+}
+
+.social-media-flex li{
+  color:var(--light);
+  float:right;
+  display: inline;
+  letter-spacing: 10px;
+  padding: 1px;
+}
+
+
+.social-media-flex :hover{
+  color:var(--engage)
 }

@@ -18,14 +18,11 @@
       <div class="top-nav">
         <div class="top-nav-logo">
           <%= link_to 'Project Space', projects_path, class: "logo" %>
-          <% if current_user %>
-
-          Welcome <%= current_user.name %>!
         </div>
-      </div>
 
       <nav class="main-nav">
         <ul>
+          <% if current_user %>
 
           <li>
             <%= link_to 'Home', projects_path, class: "current" %>
@@ -48,8 +45,12 @@
             <% end %>
           </ul>
       </nav>
+    </div>
     </header>
 
     <%= yield %>
   </body>
+  <footer>
+    
+  </footer>
 </html>

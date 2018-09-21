@@ -82,18 +82,24 @@ class ProjectsController < ApplicationController
      redirect_to projects_url
    end
 
-   private
+  def applicants
+    @project = Project.find(params[:project_id])
+    @applicants = Member.all.where(project_id: @project.id)
+  end
 
-   def ensure_user_owns_project
-     load_project
-     unless current_user == @project.members.where(owner: true).first.user_id
-       flash[:alert] = "Access Denied. Please Log In"
+  private
 
-     end
-   end
+  def ensure_user_owns_project
+    load_project
+    unless current_user == @project.members.where(owner: true).first.user_id
+     flash[:alert] = "Access Denied. Please Log In"
 
-   def load_project
-     @project = Project.find(params[:id])
-   end
+    end
+  end
+
+  def load_project
+   @project = Project.find(params[:id])
+  end
+
 
 end

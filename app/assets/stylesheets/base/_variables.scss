@@ -1,11 +1,12 @@
 //colour palette
+:root {
+  --primary: #f4f4f4;
+  --dark: #000000;
+  --light: #ffffff;
+  --engage: #CC0000;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 104, 0.8);
+}
 
-$light-gray: #eee;
-$white: #fff;
-$black: #333;
-$red: #f00;
-$brand: #a17d98;
-$brand-gray: #585759;
 
 //typography
 // $font-header:

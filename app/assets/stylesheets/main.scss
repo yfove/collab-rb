@@ -4,3 +4,76 @@
 @import 'styles/projects';
 @import 'styles/users';
 @import 'styles/form';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size:1.1em;
+  text-align: center;
+  padding:0;
+  margin:0;
+}
+
+header {
+  height: 20px;
+  margin: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid black;
+  border-color: grey;
+}
+
+.top-nav-logo a{
+  float:left;
+  font-size:20px;
+  letter-spacing:2px;
+  color:#000000;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  bottom: 0px;
+  margin-left: 10px;
+}
+
+.current {
+  font-weight: bold;
+}
+
+.main-nav ul{
+  list-style: none;
+  margin: 0 6px;
+  display: flex;
+  justify-content: space-around;
+  float: right;
+  background-color: --engage;
+}
+
+.main-nav li{
+  display: inline-block;
+  padding-right: 15px;
+}
+
+.main-nav a {
+  background: var(--light);
+  display: block;
+  text-decoration: none;
+  padding: 0.2rem;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  box-shadow: var(--shadow);
+  letter-spacing: 1px;
+}
+
+.main-nav a:hover {
+  color: var(--engage);
+  font-weight: bold;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+}

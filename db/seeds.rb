@@ -20,42 +20,23 @@ Category.create!(category_type: "Music")
 Category.create!(category_type: "Film Studies")
 
 20.times do
-user = User.create!(
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  email: Faker::Internet.free_email,
-  password: 'password',
-  password_confirmation: 'password'
-)
-project = user.projects.create!(
-  name: Faker::App.name,
-  description: Faker::Lorem.paragraph,
-)
-
-user.members.create!(
-  approved: true,
-  owner: true,
-  user_id: user.id,
-  project_id: project.id
-)
-
-end
-
-15.times do
-  Message.create!(
-    content: Faker::Lorem.paragraph,
-    private: false,
-    user_id: User.pluck(:id).sample,
-    project_id: Project.pluck(:id).sample
+  user = User.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.free_email,
+    password: 'password',
+    password_confirmation: 'password'
   )
-end
+  project = user.projects.create!(
+    name: Faker::App.name,
+    description: Faker::Lorem.paragraph,
+  )
 
-15.times do
-  Member.create!(
-    approved: false,
-    owner: false,
-    user_id: User.pluck(:id).sample,
-    project_id: Project.pluck(:id).sample
+  user.members.create!(
+    approved: true,
+    owner: true,
+    user_id: user.id,
+    project_id: project.id
   )
 end
 
@@ -77,6 +58,24 @@ tp.members.create!(
   user_id: tp.id,
   project_id: tpproject.id
 )
+
+15.times do
+  Message.create!(
+    content: Faker::Lorem.paragraph,
+    private: false,
+    user_id: User.pluck(:id).sample,
+    project_id: Project.pluck(:id).sample
+  )
+end
+
+15.times do
+  Member.create!(
+    approved: false,
+    owner: false,
+    user_id: User.pluck(:id).sample,
+    project_id: Project.pluck(:id).sample
+  )
+end
 
 50.times do
   Categorization.create!(

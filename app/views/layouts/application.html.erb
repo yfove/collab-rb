@@ -50,54 +50,62 @@
               </nav>
             </div>
           </header>
-        <% end %>
-        <%= yield %>
-      </body>
-      <footer>
-        <section class="footer-top">
-          <div class="bottom-nav">
-            <nav class="nav"></nav>
-            <ul>
-              <li>
-                <%= link_to 'Home', projects_path, class: "current" %>
-              </li>
-              <li>
-                <%= link_to "about" %>
-              </li>
-              <li>
-                <%= link_to "contact" %>
-              </li>
-              <li>
-                <%= link_to "careers" %>
-              </li>
-              <li>
-                <%= link_to "repo" %>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="footer-bottom">
-          <div class="copyright">
-            <p>&copy;2018 Project Space</p>
-          </div>
-          <div class="social-media-flex">
-            <ul>
-              <li>
-                <i class="fab fa-facebook"></i>
-              </li>
-              <li>
-                <i class="fab fa-instagram"></i>
-              </li>
-              <li>
-                <i class="fab fa-twitter"></i>
-              </li>
-              <li>
-                <i class="fab fa-google-plus-g"></i>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
-    </footer>
+          <main>
+            <% end %>
+            <%= yield %>
+
+          </main>
+
+        <footer>
+
+          <section class="footer-top">
+            <div class="bottom-nav">
+              <nav class="nav"></nav>
+              <ul>
+                <li>
+                  <%= link_to 'Home', projects_path, class: "current" %>
+                </li>
+                <li>
+                  <%= link_to "about" %>
+                </li>
+                <li>
+                  <%= link_to "contact" %>
+                </li>
+                <li>
+                  <%= link_to "careers" %>
+                </li>
+                <li>
+                  <%= link_to "repo" %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="copyright">
+              <p>&copy;2018 Project Space</p>
+            </div>
+            <div class="social-media-flex">
+              <ul>
+                <li>
+                  <i class="fab fa-facebook"></i>
+                </li>
+                <li>
+                  <i class="fab fa-instagram"></i>
+                </li>
+                <li>
+                  <i class="fab fa-twitter"></i>
+                </li>
+                <li>
+                  <i class="fab fa-google-plus-g"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+
+      </footer>
+    </body>
   </html>

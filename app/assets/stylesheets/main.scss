@@ -2,7 +2,6 @@
 
 @import 'styles/messages';
 @import 'styles/projects';
-@import 'styles/users';
 @import 'styles/form';
 
 * {
@@ -15,6 +14,8 @@ body {
   text-align: center;
   padding:0;
   margin:0;
+  min-height: 100%;
+  display: grid;
 }
 
 header {
@@ -92,11 +93,16 @@ header {
 // Footer bar and nav bar
 
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   height: 100px;
   background: var(--light);
-  width: 100%
+  width: 100%;
+  clear: both;
+   position: relative;
+   z-index: 10;
+   height: 3em;
+   margin-top: -3em;
 }
 
 .bottom-nav {
@@ -183,8 +189,4 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 2px;
 
-}
-
-#project_name {
-  box-sizing: 1000px;
 }

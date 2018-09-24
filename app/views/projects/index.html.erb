@@ -14,7 +14,7 @@
     <h3>NO PROJECTS</h3>
   <% else %>
     <% @projects.each do |project| %>
-      <div class="">
+      <div class="card">
         <p>
           <%= link_to "#{project.name}", project_path(project) %>
         </p>

@@ -6,7 +6,7 @@
     <p class='line-2'>Collaborating on <span class='accent-text'><%= @projects_count %></span> projects</p>
     <button onclick="location.href='/projects'" type="button" class="landing-buttons">View All Projects</button>
     <% if session[:user_id] == nil %>
-      <button onclick="location.href='/users/new'" type="button" class="landing-buttons">Sign Up</button>
+      <button onclick="location.href='/users/new'" type="button" class="landing-buttons">Sign Up</button> 
       <button onclick="location.href='/sessions/new'" type="button" class="landing-buttons">Log In</button>
     <% end %>
   </div>

@@ -192,3 +192,15 @@ html {
     opacity: 1;
   }
 }
+
+.landing-buttons {
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  text-transform: uppercase;
+  margin: 10px;
+  background-color: var(--engage);
+  color: var(--primary)
+}

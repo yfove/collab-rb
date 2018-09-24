@@ -9,7 +9,9 @@
   </div>
 <% end %>
 
-<%= form_for(project) do |f| %>
+
+<div class="new">
+  <%= form_for(project) do |f| %>
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -18,8 +20,9 @@
     <%= f.label :description %>
     <%= f.text_field :description %>
   </p>
+</div>
 
-  
+
 
   <%= f.collection_check_boxes :categories, Category.all, :id, :category_type, include_hidden: false %>
 

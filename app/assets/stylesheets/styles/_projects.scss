@@ -1,3 +1,14 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+input[type=checkbox] {
+  padding: 0px;
+  height: 20px;
+  width: 20px;
+}
+
+option{
+  background: red;
+  font-size: 20px;
+}

@@ -6,6 +6,7 @@ html {
 }
 
 main {
+  font-family: 'Raleway', sans-serif;
   padding-bottom: 100px;
   min-height: 100%;
   height: 100%;
@@ -14,4 +15,74 @@ main {
 ul {
   list-style: none;
   padding-right: 30px;
+}
+
+// base
+
+h1 {
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: var(--engage);
+
+}
+
+// buttons
+
+input {
+  border: none;
+  background-color: var(--primary);
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--engage);
+  padding-left: 10px;
+  font-size: 15px;
+  margin: 10px;
+}
+
+select {
+  border: none;
+  background-color: var(--primary);
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: var(--engage);
+}
+
+label {
+  text-transform: lowercase;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+input[type=submit] {
+  background: var(--engage);
+  color: var(--primary);
+}
+
+label[for=user_bio] {
+  padding: 20px;
+}
+
+//messaging
+
+#message_content {
+  padding: 1em;
+  width: 300px;
+  height: 80px;
+  margin-top: 10px;
+  font-size: 0.8em;
 }

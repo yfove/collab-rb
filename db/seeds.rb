@@ -30,6 +30,7 @@ Category.create!(category_type: "Film Studies")
   project = user.projects.create!(
     name: Faker::App.name,
     description: Faker::Lorem.paragraph,
+    looking_for: [Category.pluck(:category_type).sample]
   )
 
   user.members.create!(
@@ -50,6 +51,7 @@ tp = User.create!(
 tpproject = tp.projects.create!(
   name: 'Random',
   description: "This is a fake project",
+  looking_for: Category.pluck(:category_type).sample
 )
 
 tp.members.create!(
@@ -59,7 +61,7 @@ tp.members.create!(
   project_id: tpproject.id
 )
 
-15.times do
+35.times do
   Message.create!(
     content: Faker::Lorem.paragraph,
     private: false,
@@ -68,7 +70,16 @@ tp.members.create!(
   )
 end
 
-15.times do
+# 25.times do
+#   Message.create!(
+#     content: Faker::Lorem.paragraph,
+#     private: true,
+#     user_id: Member.where(project_id: Project.find(params[:id])).pluck(:id).sample,
+#     project_id: Project.pluck(:id).sample
+#   )
+# end
+
+60.times do
   Member.create!(
     approved: false,
     owner: false,

@@ -24,10 +24,19 @@
     <%= f.label :image %>
     <%= f.text_field :image %>
   </p>
+  <p>
+    <%= f.label :looking_for %>
+    <input placeholder="Add a role..." class="add-role--input" />
+    <input name="project[looking_for]" type="hidden" class="roles" />
+
+    <button class="add-role--button">Add</div>
+    <div class="roles--container"></div>
+  </p>
+
 </div>
 
 
-
+  <%= f.label "Project Category" %> <br>
   <%= f.collection_check_boxes :categories, Category.all, :id, :category_type, include_hidden: false %>
 
   <p>

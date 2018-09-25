@@ -32,7 +32,7 @@
   </p>
 <% end %>
 
-<% if @categories %>
+<% if @categories.length > 0 %>
   <h3>Categories</h3>
   <p>
     <% @categories.each do |category| %>
@@ -113,3 +113,11 @@
 <% end %>
 
 <h3>Looking For:</h3>
+<% if @project.looking_for.length > 0 %>
+  <% @project.looking_for.each do |looking| %>
+    <%= looking %>
+    
+  <% end %>
+<% else %>
+  <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+<% end  %>

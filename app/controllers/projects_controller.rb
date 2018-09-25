@@ -32,12 +32,16 @@ class ProjectsController < ApplicationController
     @project.description = params[:project][:description]
     @categories = params[:project][:categories]
     Categorization.all.where(project_id: @project.id).destroy_all
+    @project.looking_for = params[:project][:looking_for].split(',')
 
-    @categories.each do |category|
-      categorization = Categorization.new
-      categorization.project = @project
-      categorization.category_id = category
-      categorization.save
+
+    if @categories != nil
+      @categories.each do |category|
+        categorization = Categorization.new
+        categorization.project = @project
+        categorization.category_id = category
+        categorization.save
+      end
     end
 
     if @project.save
@@ -49,10 +53,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    puts params
     @project = Project.new
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
+    @project.looking_for = params[:project][:looking_for].split(',')
     @categories = params[:project][:categories]
 
     @member = Member.new
@@ -61,11 +65,13 @@ class ProjectsController < ApplicationController
     @member.owner = true
     @member.project = @project
 
-    @categories.each do |category|
-      categorization = Categorization.new
-      categorization.project = @project
-      categorization.category_id = category
-      categorization.save
+    if @categories != nil
+      @categories.each do |category|
+        categorization = Categorization.new
+        categorization.project = @project
+        categorization.category_id = category
+        categorization.save
+      end
     end
 
     if @project.save && @member.save
@@ -85,6 +91,19 @@ class ProjectsController < ApplicationController
   def applicants
     @project = Project.find(params[:project_id])
     @applicants = Member.all.where(project_id: @project.id)
+  end
+
+  def new_applicant
+
+  end
+
+  def create_applicant
+    @project = Project.find(params[:project_id])
+    @member = Member.new
+    @member.project = @project
+    @member.approved = false
+    @member.owner = false
+    @member.user = current_user
   end
 
   private

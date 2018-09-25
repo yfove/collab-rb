@@ -10,4 +10,8 @@ class Project < ApplicationRecord
   has_many :categorizations
   has_many :categories, through: :categorizations
 
+  def self.latest_projects(num)
+    return Project.order(created_at: :desc).limit(num)
+  end
+
 end

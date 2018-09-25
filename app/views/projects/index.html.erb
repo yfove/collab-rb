@@ -1,8 +1,3 @@
-
-  <div class="title">
-    <h1>ProjectSpace</h1>
-  </div>
-
   <p>
     <%= form_tag categories_path, method: :post do %>
       <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "category_type") %>
@@ -13,20 +8,43 @@
   <% if @projects.length == 0 %>
     <h3>NO PROJECTS</h3>
   <% else %>
-    <% @projects.each do |project| %>
-      <article class="project">
-        <%= link_to project, class: 'project-link' do %>
-        <figure class="project-image">
-          <% if project.image %>
-            <%= image_tag project.image %>
-          <% else %>
-              <%= image_tag "default.jpg" %>
-          <% end %>
-        </figure>
-        <p>
-          <%= link_to "#{project.name}", project_path(project) %>
-        </p>
-      </article>
-    <% end %>
-  <% end %>
+    <div class="latest-projects">
+      <h1>Latest Projects</h1>
+      <div class="latest-projects-container">
+        <% @latest_projects.each do |project| %>
+        <article class="project-item">
+          <figure class="project-image">
+            <% if project.image %>
+              <%= image_tag project.image %>
+            <% else %>
+                <%= image_tag "default.jpg" %>
+            <% end %>
+          </figure>
+          <p>
+            <%= link_to "#{project.name}", project_path(project) %>
+          </p>
+        </article>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="other-projects">
+      <h1>More Projects</h1>
+      <div class="projects-container">
+        <% @projects.each do |project| %>
+          <article class="project-item">
+            <figure class="project-image">
+              <% if project.image %>
+                <%= image_tag project.image %>
+              <% else %>
+                  <%= image_tag "default.jpg" %>
+              <% end %>
+            </figure>
+            <p>
+              <%= link_to "#{project.name}", project_path(project) %>
+            </p>
+          </article>
+        <% end %>
+      </div>
+    </div>
   <% end %>

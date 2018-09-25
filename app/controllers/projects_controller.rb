@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @latest_projects = Project.latest_projects(3)
   end
 
   def show
@@ -10,6 +11,7 @@ class ProjectsController < ApplicationController
     @message = Message.new
     @collaborators = @project.members.where(approved: true)
     @categories = @project.categories
+
 
     if @project.messages.empty? == false
       @visitor_msgs = @project.messages.where(private: false)

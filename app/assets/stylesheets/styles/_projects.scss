@@ -8,7 +8,31 @@ input[type=checkbox] {
   width: 20px;
 }
 
-option{
+option {
   background: red;
   font-size: 20px;
+}
+
+.projects-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.latest-projects-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.project-item {
+  max-width: 400px;
+}
+
+.project-image img {
+  max-width: 320px;
 }

@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @latest_projects = Project.latest_projects(3)
   end
 
   def show
@@ -10,6 +11,7 @@ class ProjectsController < ApplicationController
     @message = Message.new
     @collaborators = @project.members.where(approved: true)
     @categories = @project.categories
+
 
     if @project.messages.empty? == false
       @visitor_msgs = @project.messages.where(private: false)
@@ -30,6 +32,7 @@ class ProjectsController < ApplicationController
     load_project
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
+    @project.image = params[:project][:image]
     @categories = params[:project][:categories]
     Categorization.all.where(project_id: @project.id).destroy_all
     @project.looking_for = params[:project][:looking_for].split(',')
@@ -56,8 +59,9 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
-    @project.looking_for = params[:project][:looking_for].split(',')
+    @project.image = params[:project][:image]
     @categories = params[:project][:categories]
+    @project.looking_for = params[:project][:looking_for].split(',')
 
     @member = Member.new
     @member.user = current_user

@@ -1,0 +1,163 @@
+header {
+
+  width:100%;
+  height: 20px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 20px;
+  padding: 20px 10px 40px 20px;
+  border-bottom: 1px solid black;
+  border-color: var(--dark);
+  background-color: var(--light);
+}
+
+.top-nav-logo a{
+  float:left;
+  font-size:20px;
+  letter-spacing:2px;
+  color:#000000;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  bottom: 0px;
+  margin-left: 10px;
+}
+
+.current {
+  font-weight: bold;
+}
+
+.main-nav ul{
+  list-style: none;
+  margin: 0 6px;
+  display: flex;
+  justify-content: space-around;
+  float: right;
+  background-color: --engage;
+}
+
+.main-nav li{
+  display: inline-block;
+  padding-right: 15px;
+}
+
+.main-nav a {
+  background: var(--light);
+  display: block;
+  text-decoration: none;
+  padding: 0.2em;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 0.7em;
+  box-shadow: var(--shadow);
+  letter-spacing: 1px;
+}
+
+.main-nav a:hover {
+  color: var(--engage);
+  font-weight: bold;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+}
+
+// Footer bar and nav bar
+
+footer {
+  position: relative;
+  bottom: 0;
+  height: 100px;
+  background: var(--light);
+  width: 100%;
+  clear: both;
+   position: relative;
+   z-index: 10;
+   height: 3em;
+   margin-top: -3em;
+}
+
+.bottom-nav {
+  text-align: center;
+}
+
+.bottom-nav a {
+  background: var(--light);
+  display: block;
+  text-decoration: none;
+  padding: 0.2em;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 0.7em;
+  box-shadow: var(--shadow);
+  letter-spacing: 1px;
+}
+
+.bottom-nav ul{
+  list-style: none;
+  margin: 0 6px;
+  display: flex;
+  justify-content: space-around;
+  float: none;
+  background-color: --engage;
+  padding-top: 20px;
+  border-top: 1px solid black;
+}
+
+.bottom-nav a:hover {
+  color: var(--engage);
+  font-weight: bold;
+}
+
+// bottom flex bar
+
+.copyright {
+  font-size: 0.9em;
+}
+
+.footer-bottom {
+  background-color: var(--dark);
+  position: relative;
+  bottom: 0;
+  height: 40px;
+}
+
+.copyright {
+  color:var(--light);
+  float: left;
+  font-size: 0.75rem;
+  font-weight:bold;
+  padding-left: 15px;
+}
+
+.copyright p{
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+.social-media-flex li{
+  color:var(--light);
+  float:right;
+  display: inline;
+  letter-spacing: 10px;
+  padding: 1px;
+}
+
+.social-media-flex {
+  position: relative;
+  top: 10px;
+}
+
+
+.social-media-flex :hover{
+  color:var(--engage)
+}

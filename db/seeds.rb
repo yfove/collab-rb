@@ -70,7 +70,7 @@ bd = User.create!(
   password: 'password',
   password_confirmation: 'password'
 )
-bdproject = tp.projects.create!(
+bdproject = bd.projects.create!(
   name: 'Contrary',
   description: "Ooh LALA",
   looking_for: [Category.pluck(:category_type).sample],

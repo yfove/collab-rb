@@ -1,88 +1,117 @@
-<div class="user-name">
-  <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
-  <% if current_user == @user %>
-    <%= link_to 'Edit Profile', edit_user_path %>
-  <% end %>
-</div>
-
-<div class="user-information">
-  <ul>
-    <li>Full name: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></li>
-    <li>Email Address: <%= @user.email %></li>
-    <li>Field of Work: <%= @user.job_field %></li>
-    <li>Age: <%= @user.age %></li>
-    <li>Year of Study: <%= @user.year %></li>
-    <li>Institution: <%= @user.institution %></li>
-    <li>Interests:
-      <% @user.interests.each do |interest| %>
-        <% if interest != @user.interests.last %>
-          <%= interest.capitalize %>,
-        <% else %>
-          <%= interest.capitalize %>
-        <% end%>
+<div class="user-info-container">
+  <div class="user-information">
+    <div class="user-name">
+      <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+      <% if current_user == @user %>
+        <%= link_to 'Edit Profile', edit_user_path %>
       <% end %>
-    </li>
-  </ul>
+    </div>
+    <ul>
+      <li>Full name: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></li>
+      <li>Email Address: <%= @user.email %></li>
+      <li>Field of Work: <%= @user.job_field %></li>
+      <li>Age: <%= @user.age %></li>
+      <li>Year of Study: <%= @user.year %></li>
+      <li>Institution: <%= @user.institution %></li>
+      <li>Interests:
+        <% @user.interests.each do |interest| %>
+          <% if interest != @user.interests.last %>
+            <%= interest.capitalize %>,
+          <% else %>
+            <%= interest.capitalize %>
+          <% end%>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="user-bio">
+    <h2><%= @user.first_name.capitalize %>'s Bio</h2>
+    <p><%= @user.bio %></p>
+  </div>
+
+  <% if @projects_owned.empty? == false %>
+    <div class="project-container">
+      <h2><%= @user.first_name.capitalize %>'s Projects</h2>
+      <div class="owned-container">
+        <% @projects_owned.each do |project_id| %>
+          <% @project = Project.find(project_id) %>
+          <div class="project-item">
+            <div class="project-image">
+              <% if @project.image && @project.image != "" %>
+                <%= image_tag @project.image %>
+              <% else %>
+                  <%= image_tag "default.jpg" %>
+              <% end %>
+            </div>
+            <h3><%= link_to @project.name, project_path(@project) %></h3>
+            <% if @project.categories.empty? == false %>
+              <p class="categories">
+              <% @project.categories.each do |category| %>
+                <span class="category"><%= category.category_type %></span>
+              <% end %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @projects_joined.empty? == false %>
+    <div class="project-container">
+      <h2><%= @user.first_name.capitalize %> Joined These Projects</h2>
+      <div class="joined-container">
+        <% @projects_joined.each do |project_id| %>
+          <% @project = Project.find(project_id) %>
+          <div class="project-item">
+            <div class="project-image">
+              <% if @project.image && @project.image != "" %>
+                <%= image_tag @project.image %>
+              <% else %>
+                  <%= image_tag "default.jpg" %>
+              <% end %>
+            </div>
+            <h3><%= link_to @project.name, project_path(@project) %></h3>
+            <% if @project.categories.empty? == false %>
+              <p class="categories">
+              <% @project.categories.each do |category| %>
+                <span class="category"><%= category.category_type %></span>
+              <% end %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @projects_applied.empty? == false %>
+    <div class="project-container">
+      <h2><%= @user.first_name.capitalize %> Applied to These Projects</h2>
+      <div class="applied-container">
+        <% @projects_applied.each do |project_id| %>
+          <% @project = Project.find(project_id) %>
+          <div class="project-item">
+            <div class="project-image">
+              <% if @project.image && @project.image != "" %>
+                <%= image_tag @project.image %>
+              <% else %>
+                  <%= image_tag "default.jpg" %>
+              <% end %>
+            </div>
+            <h3><%= link_to @project.name, project_path(@project) %></h3>
+            <% if @project.categories.empty? == false %>
+              <p class="categories">
+              <% @project.categories.each do |category| %>
+                <span class="category"><%= category.category_type %></span>
+              <% end %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
 </div>
-
-<div class="user-bio">
-  <h2><%= @user.first_name.capitalize %>'s Bio</h2>
-  <p><%= @user.bio %></p>
-</div>
-
-<% if @projects_owned.empty? == false %>
-  <div class="owned-projects">
-    <h2><%= @user.first_name.capitalize %>'s Projects</h2>
-    <% @projects_owned.each do |project_id| %>
-      <% @project = Project.find(project_id) %>
-      <div class="own-project">
-        <h3><%= link_to @project.name, project_path(@project) %></h3>
-        <% if @project.categories.empty? == false %>
-          <p class="categories">
-          <% @project.categories.each do |category| %>
-            <span class="category"><%= category.category_type %></span>
-          <% end %>
-          </p>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
-<% if @projects_joined.empty? == false %>
-  <div class="joined-projects">
-    <h2><%= @user.first_name.capitalize %> Joined These Projects</h2>
-    <% @projects_joined.each do |project_id| %>
-      <% @project = Project.find(project_id) %>
-      <div class="joined-project">
-        <h3><%= link_to @project.name, project_path(@project) %></h3>
-        <% if @project.categories.empty? == false %>
-          <p class="categories">
-          <% @project.categories.each do |category| %>
-            <span class="category"><%= category.category_type %></span>
-          <% end %>
-          </p>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
-<% if @projects_applied.empty? == false %>
-  <div class="applied-projects">
-    <h2><%= @user.first_name.capitalize %> Applied to These Projects</h2>
-    <% @projects_applied.each do |project_id| %>
-      <% @project = Project.find(project_id) %>
-      <div class="applied-project">
-        <h3><%= link_to @project.name, project_path(@project) %></h3>
-        <% if @project.categories.empty? == false %>
-          <p class="categories">
-          <% @project.categories.each do |category| %>
-            <span class="category"><%= category.category_type %></span>
-          <% end %>
-          </p>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-<% end %>

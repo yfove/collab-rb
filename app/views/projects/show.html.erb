@@ -20,6 +20,11 @@
     <% if member.approved == true %>
       <p>
         <%= link_to (member.user.name.titlecase), user_path(member.user_id) %>
+        <% if @owner == current_user && member.user != current_user %>
+        <small>
+          <%= link_to "Remove", project_applicant_path(@project.id, :member_id => member.id, :approved => false), :method => :put %>
+        </small>
+        <% end  %>
       </p>
     <% end %>
   <% end %>
@@ -112,12 +117,13 @@
   <% end %>
 <% end %>
 
-<h3>Looking For:</h3>
-<% if @project.looking_for.length > 0 %>
-  <% @project.looking_for.each do |looking| %>
-    <%= looking %>
-    
-  <% end %>
-<% else %>
-  <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+<% if @collaborators.where(user_id: current_user.id).length == 0 %>
+  <h3>Looking For:</h3>
+  <% if @project.looking_for.length > 0 %>
+    <% @project.looking_for.each do |looking| %>
+      <button type="button" name="button"><%= link_to looking, project_applicant_path(@project.id, :role => looking), method: :post %></button>
+    <% end %>
+  <% else %>
+    <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+  <% end  %>
 <% end  %>

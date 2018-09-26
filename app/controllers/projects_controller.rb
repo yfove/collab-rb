@@ -94,20 +94,33 @@ class ProjectsController < ApplicationController
 
   def applicants
     @project = Project.find(params[:project_id])
-    @applicants = Member.all.where(project_id: @project.id)
-  end
-
-  def new_applicant
-
+    @applicants = Member.all.where(project_id: @project.id).where(approved: false)
   end
 
   def create_applicant
     @project = Project.find(params[:project_id])
-    @member = Member.new
-    @member.project = @project
-    @member.approved = false
-    @member.owner = false
-    @member.user = current_user
+    if @project.members.where(user: current_user).empty?
+      @member = Member.new
+      @member.project = @project
+      @member.approved = false
+      @member.owner = false
+      @member.user = current_user
+      @member.role = params[:role]
+      if @member.save
+        redirect_to project_url(@project.id)
+      end
+    else
+      flash[:notice] = "You are already on the list for membership."
+      redirect_to project_url(@project.id)
+    end
+  end
+
+  def update_applicant
+    @member = Member.find(params[:member_id])
+    @member.approved = params[:approved]
+    if @member.save
+      redirect_to project_url(params[:project_id])
+    end
   end
 
   private

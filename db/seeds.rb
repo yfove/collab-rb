@@ -51,14 +51,38 @@ tp = User.create!(
 tpproject = tp.projects.create!(
   name: 'Random',
   description: "This is a fake project",
-  looking_for: Category.pluck(:category_type).sample
+  looking_for: [Category.pluck(:category_type).sample],
+  image: "https://placebear.com/#{rand(800)}/#{rand(800)}"
 )
 
 tp.members.create!(
   approved: true,
   owner: true,
   user_id: tp.id,
-  project_id: tpproject.id
+  project_id: tpproject.id,
+  role: Category.pluck(:category_type).sample
+)
+
+bd = User.create!(
+  first_name: "Billy",
+  last_name: "Davidson",
+  email: 'bd@gmail.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+bdproject = tp.projects.create!(
+  name: 'Contrary',
+  description: "Ooh LALA",
+  looking_for: [Category.pluck(:category_type).sample],
+  image: "https://placebear.com/#{rand(800)}/#{rand(800)}"
+)
+
+bd.members.create!(
+  approved: true,
+  owner: true,
+  user_id: bd.id,
+  project_id: bdproject.id,
+  role: Category.pluck(:category_type).sample
 )
 
 35.times do
@@ -84,7 +108,8 @@ end
     approved: false,
     owner: false,
     user_id: User.pluck(:id).sample,
-    project_id: Project.pluck(:id).sample
+    project_id: Project.pluck(:id).sample,
+    role: Category.pluck(:category_type).sample
   )
 end
 

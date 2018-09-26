@@ -1,9 +1,13 @@
 <h1>Applicants</h1>
 
-<% @applicants.each do |applicants| %>
-  <% if applicants.user != @project.members.where(owner: true).first.user %>
+<% @applicants.each do |applicant| %>
+  <% if applicant.user != @project.members.where(owner: true).first.user %>
+    <h3><%= applicant.role %></h3>
     <p>
-      <%= link_to "#{applicants.user.name}", user_path(applicants.user.id) %>
+      <%= link_to "#{applicant.user.name}", user_path(applicant.user.id) %>
     </p>
+    <small>
+      <%= link_to "Approve #{applicant.user.name}", project_applicant_path(@project.id, :member_id => applicant.id, :approved => true), :method => :put %>
+    </small>
   <% end %>
 <% end %>

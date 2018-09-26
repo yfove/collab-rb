@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_09_25_160442) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "project_id"
+    t.string "role"
     t.index ["project_id"], name: "index_members_on_project_id"
     t.index ["user_id"], name: "index_members_on_user_id"
   end

@@ -1,5 +1,16 @@
 <div class="user-info-container">
   <div class="user-information">
+    <div class="user-avatar">
+      <% if @user.image %>
+          <% if @user.image == '' %>
+            <%= image_tag "ps-avatar2.jpg" %>
+          <% else %>
+            <%= image_tag @user.image %>
+          <% end %>
+      <% else %>
+        <%= image_tag "ps-avatar2.jpg" %>
+      <% end %>
+    </div>
     <div class="user-name">
       <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
       <% if current_user == @user %>
@@ -38,10 +49,18 @@
           <% @project = Project.find(project_id) %>
           <div class="project-item">
             <div class="project-image">
-              <% if @project.image && @project.image != "" %>
-                <%= image_tag @project.image %>
+              <% if @project.image %>
+                <%= link_to project_path(@project) do %>
+                  <% if @project.image == '' %>
+                    <%= image_tag "default.jpg" %>
+                  <% else %>
+                    <%= image_tag @project.image %>
+                  <% end %>
+                <% end %>
               <% else %>
+                <%= link_to project_path(@project) do %>
                   <%= image_tag "default.jpg" %>
+                <% end %>
               <% end %>
             </div>
             <h3><%= link_to @project.name, project_path(@project) %></h3>
@@ -66,10 +85,18 @@
           <% @project = Project.find(project_id) %>
           <div class="project-item">
             <div class="project-image">
-              <% if @project.image && @project.image != "" %>
-                <%= image_tag @project.image %>
+              <% if @project.image %>
+                <%= link_to project_path(@project) do %>
+                  <% if @project.image == '' %>
+                    <%= image_tag "default.jpg" %>
+                  <% else %>
+                    <%= image_tag @project.image %>
+                  <% end %>
+                <% end %>
               <% else %>
+                <%= link_to project_path(@project) do %>
                   <%= image_tag "default.jpg" %>
+                <% end %>
               <% end %>
             </div>
             <h3><%= link_to @project.name, project_path(@project) %></h3>
@@ -94,10 +121,18 @@
           <% @project = Project.find(project_id) %>
           <div class="project-item">
             <div class="project-image">
-              <% if @project.image && @project.image != "" %>
-                <%= image_tag @project.image %>
+              <% if @project.image %>
+                <%= link_to project_path(@project) do %>
+                  <% if @project.image == '' %>
+                    <%= image_tag "default.jpg" %>
+                  <% else %>
+                    <%= image_tag @project.image %>
+                  <% end %>
+                <% end %>
               <% else %>
+                <%= link_to project_path(@project) do %>
                   <%= image_tag "default.jpg" %>
+                <% end %>
               <% end %>
             </div>
             <h3><%= link_to @project.name, project_path(@project) %></h3>

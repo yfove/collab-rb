@@ -57,8 +57,9 @@
               <p><%= link_to "Remove Message", project_message_path(@project, msg), method: 'delete' %></p>
             <% end %>
           <% end %>
+
           <p><%= msg.content %></p>
-          <p>Posted by <%= User.find(msg.user_id).first_name.capitalize %> <%= User.find(msg.user_id).last_name.capitalize %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
+          <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
         </div>
       <% end %>
     </div>
@@ -79,13 +80,7 @@
                     <p><%= link_to "Remove Message", project_message_path(@project, msg), method: 'delete' %></p>
                   <% end %>
                   <p><%= msg.content %></p>
-                  <p>Posted by
-                    <%= User.find(msg.user_id).first_name.capitalize %>
-                    <%= User.find(msg.user_id).last_name.capitalize %>
-                    on
-                    <%= msg.created_at.strftime("%a %b %e, %Y") %>
-                    at
-                    <%= msg.created_at.strftime("%I:%M%p") %></p>
+                  <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
                 </div>
               <% end %>
             </div>

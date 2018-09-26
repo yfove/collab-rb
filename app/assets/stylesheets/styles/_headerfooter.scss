@@ -17,6 +17,16 @@ header {
   background-color: var(--light);
 }
 
+.logo-img{
+  float: left;
+  bottom: 0px;
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: 5px;
+  position: relative;
+  bottom: 2px;
+}
+
 .top-nav-logo a{
   float:left;
   font-size:20px;
@@ -36,20 +46,18 @@ header {
 .main-nav ul{
   list-style: none;
   margin: 0 6px;
-  display: flex;
   justify-content: space-around;
   float: right;
   background-color: --engage;
 }
 
 .main-nav li{
-  display: inline-block;
-  padding-right: 15px;
+  display: inline;
 }
 
 .main-nav a {
   background: var(--light);
-  display: block;
+  // display: block;
   text-decoration: none;
   padding: 0.2em;
   text-align: center;
@@ -160,4 +168,38 @@ footer {
 
 .social-media-flex :hover{
   color:var(--engage)
+}
+
+// hamburger toggle menu
+.main-nav .icon {
+  display: none;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 750px) {
+  .main-nav a {display: none;}
+  .main-nav a.icon {
+    position: absolute;
+    float: left;
+    display: block;
+    font-size: 15px;
+  }
+
+  .main-nav a:hover {
+    color: var(--engage);
+    font-weight: bold;
+  }
+
+  .main-nav.responsive {position: relative;}
+  .main-nav.responsive a.icon {
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+
+  }
+  .main-nav.responsive a {
+    display: block;
+    padding: 30px 16px;
+  }
 }

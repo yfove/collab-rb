@@ -5,10 +5,10 @@
     <figure class="project-image">
       <% if project.image %>
         <%= link_to project_path(project) do %>
-          <% if project.image == '' %>
-            <%= image_tag "default.jpg" %>
+          <% if project.image.attached? %>
+          <%= image_tag project.image %>
           <% else %>
-            <%= image_tag project.image %>
+            <%= image_tag "default.jpg" %>
           <% end %>
         <% end %>
       <% else %>

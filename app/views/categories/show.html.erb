@@ -1,6 +1,25 @@
 <h1><%= @category.category_type %></h1>
-<%= link_to 'Home', projects_path, class: "current" %>
-
-<% @category.projects.each do |project| %>
-  <h4><%= link_to project.name, project_path(project)%></h4>
+<div class="category-projects-container">
+  <% @category.projects.each do |project| %>
+  <article class="project-item">
+    <figure class="project-image">
+      <% if project.image %>
+        <%= link_to project_path(project) do %>
+          <% if project.image == '' %>
+            <%= image_tag "default.jpg" %>
+          <% else %>
+            <%= image_tag project.image %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to project_path(project) do %>
+          <%= image_tag "default.jpg" %>
+        <% end %>
+      <% end %>
+    </figure>
+    <p>
+      <%= link_to project.name, project_path(project) %>
+    </p>
+  </article>
 <% end %>
+</div>

@@ -121,4 +121,13 @@
   <% else %>
     <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
   <% end  %>
+<% else %>
+  <h3>Looking For:</h3>
+  <% if @project.looking_for.length > 0 %>
+    <% @project.looking_for.each do |looking| %>
+      <button type="button" name="button"><%= looking %></button>
+    <% end %>
+  <% else %>
+    <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+  <% end  %>
 <% end  %>

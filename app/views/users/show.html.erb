@@ -67,7 +67,7 @@
             <% if @project.categories.empty? == false %>
               <p class="categories">
               <% @project.categories.each do |category| %>
-                <span class="category"><%= category.category_type %></span>
+                <%= link_to "#{category.category_type}", category_path(category), class: "category" %>
               <% end %>
               </p>
             <% end %>
@@ -103,7 +103,7 @@
             <% if @project.categories.empty? == false %>
               <p class="categories">
               <% @project.categories.each do |category| %>
-                <span class="category"><%= category.category_type %></span>
+                <%= link_to "#{category.category_type}", category_path(category), class: "category" %>
               <% end %>
               </p>
             <% end %>
@@ -139,7 +139,7 @@
             <% if @project.categories.empty? == false %>
               <p class="categories">
               <% @project.categories.each do |category| %>
-                <span class="category"><%= category.category_type %></span>
+                <%= link_to "#{category.category_type}", category_path(category), class: "category" %>
               <% end %>
               </p>
             <% end %>

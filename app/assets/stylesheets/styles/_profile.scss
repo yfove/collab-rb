@@ -17,6 +17,11 @@
 }
 
 .user-bio {
-  background: #dddddd;
   padding: 0px 15px;
+}
+
+.user-avatar img {
+  padding: 15px;
+  max-width: 320px;
+  border-radius: 50%;
 }

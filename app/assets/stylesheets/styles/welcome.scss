@@ -153,6 +153,7 @@ html {
   -o-animation-duration: 1.5s;
   -o-animation-fill-mode: forwards;
 }
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -203,4 +204,10 @@ html {
   margin: 10px;
   background-color: var(--engage);
   color: var(--primary)
+}
+
+.logo-landing {
+  width: 95px;
+  padding: 2px;
+  position: relative;
 }

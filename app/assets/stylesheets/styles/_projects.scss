@@ -28,3 +28,10 @@ option {
 .project-image img {
   max-width: 320px;
 }
+
+.project-image img {
+  height: 200px;
+  width: 400px;
+  border: 4px solid var(--dark);
+  padding: 10px;
+}

@@ -37,9 +37,9 @@ class ProjectsController < ApplicationController
     Categorization.all.where(project_id: @project.id).destroy_all
     @project.looking_for = params[:project][:looking_for].split(',')
 
-    # if params[:project][:image] != nil
-    #   @project.image.attach(params[:project][:image])
-    # end
+    if params[:project][:image] != nil
+      @project.image.attach(params[:project][:image])
+    end
 
 
 

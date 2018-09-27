@@ -7,6 +7,7 @@ header {
 }
 
 .top-nav {
+  z-index: 10;
   position: fixed;
   top: 0;
   width: 100%;
@@ -202,4 +203,5 @@ footer {
     display: block;
     padding: 30px 16px;
   }
+
 }

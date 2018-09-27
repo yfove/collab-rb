@@ -21,7 +21,14 @@
 }
 
 .user-avatar img {
-  padding: 15px;
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
   max-width: 320px;
   border-radius: 50%;
+  border: 5px solid var(--dark);
+}
+
+.fa-trash-o {
+  font-size: 1.2em;
 }

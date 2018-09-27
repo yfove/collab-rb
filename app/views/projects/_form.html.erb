@@ -36,9 +36,11 @@
     </div>
   </p>
 </div>
-  <%= f.label "Project Category" %> <br>
+<div class="categories-container">
+  <%= f.label "Project Category", :class => 'project-category'%> <br>
   <%= f.collection_check_boxes :categories, Category.all, :id, :category_type, include_hidden: false %>
   <p>
     <%= f.submit "ProjectSpace It!" %>
   </p>
+</div>
 <% end %>

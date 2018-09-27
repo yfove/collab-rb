@@ -16,8 +16,8 @@
           <figure class="project-image">
             <% if project.image %>
               <%= link_to project_path(project) do %>
-                <% if project.image.attached? %>
-                <%= image_tag project.image %>
+              <% if project.image.attached? %>
+                  <%= image_tag project.image %>
                 <% else %>
                   <%= image_tag "default.jpg" %>
                 <% end %>
@@ -44,8 +44,8 @@
             <figure class="project-image">
               <% if project.image %>
                 <%= link_to project_path(project) do %>
-                  <% if project.image.attached? %>
-                  <%= image_tag project.image %>
+                <% if project.image.attached? %>
+                    <%= image_tag project.image %>
                   <% else %>
                     <%= image_tag "default.jpg" %>
                   <% end %>

@@ -1,0 +1,52 @@
+body {
+  height: 100%;
+}
+.bgimg-1 {
+  background-image: image_url("about1.jpg");
+  min-height: 500px;
+}
+.bgimg-2 {
+  background-image: image_url("about2.jpg");
+  min-height: 400px;
+}
+.bgimg-3 {
+  background-image: image_url("about3.jpg");
+  min-height: 500px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+    background-color: #111;
+    color: white;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+}
+
+.bgimg-1, .bgimg-2, .bg-img-3 {
+  position: relative;
+  opacity: 0.85;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.explore {
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  opacity: 100%;
+  border: 4px solid var(--primary);
+  padding: 1em;
+  background: black;
+  border-radius: 10px;
+}

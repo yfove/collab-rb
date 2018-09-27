@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     get "/applicants" => "projects#applicants", as: "applicants"
     post "/applicant" => "projects#create_applicant", as: "applicant"
     put "/applicant" => "projects#update_applicant", as: "update_applicant"
+
   end
+  get "/about" => "projects#about", as: "about"
   resources :sessions, only: [:new, :create, :destroy]
   resources :categories, only: [:show, :create]
   root 'welcome#index'

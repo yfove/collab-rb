@@ -46,7 +46,8 @@ tp = User.create!(
   last_name: "Palef",
   email: 'tp@gmail.com',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  interests: 'David Ma'
 )
 tpproject = tp.projects.create!(
   name: 'Random',

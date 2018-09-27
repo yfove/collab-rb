@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user.year = params[:user][:year]
     @user.institution = params[:user][:institution]
     @user.job_field = params[:user][:job_field]
+    @user.image = params[:user][:image]
 
     interest_string = params[:user][:interests]
 
@@ -81,8 +82,13 @@ class UsersController < ApplicationController
     @user.year = params[:user][:year]
     @user.institution = params[:user][:institution]
     @user.job_field = params[:user][:job_field]
+    # @user.image = params[:user][:image]
 
     interest_string = params[:user][:interests]
+
+    if params[:user][:image] != nil
+      @user.image.attach(params[:user][:image])
+    end
 
     if interest_string
       interest_arr = interest_string.split(' ')

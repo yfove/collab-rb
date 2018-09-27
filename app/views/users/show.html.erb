@@ -136,6 +136,7 @@
               <% end %>
             </div>
             <h3><%= link_to @project.name, project_path(@project) %></h3>
+
             <% if @project.categories.empty? == false %>
               <p class="categories">
               <% @project.categories.each do |category| %>

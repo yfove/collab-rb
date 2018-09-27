@@ -19,7 +19,7 @@
       <h1><%= @project.name.titlecase %></h1>
       <% if current_user %>
         <% if current_user.id == @project.members.where(owner: true).first.user_id %>
-          <%= link_to 'Edit Project', edit_project_path(@project) %> | <%=link_to 'Delete', project_path(@project), :method => :delete %>
+          <%= link_to '', edit_project_path(@project), class: 'fas fa-edit' %> | <%= link_to '', project_path(@project), class: 'fa fa-trash-o', :method => :delete %>
         <% end %>
       <% end %>
 

@@ -35,3 +35,50 @@ option {
   border: 4px solid var(--dark);
   padding: 10px;
 }
+
+.project-show-container {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas:
+    "projectInfo visitorMsgs"
+    "projectInfo privateMsgs"
+    "projectInfo publicForm"
+    "projectInfo privateForm"
+    "projectInfo looking";
+}
+
+.project-information {
+  grid-area: projectInfo;
+  background: #dddddd;
+}
+
+.visitor-msgs {
+  grid-area: visitorMsgs;
+}
+
+.private-msgs {
+  grid-area: privateMsgs;
+}
+
+.public-msg-form {
+  grid-area: publicForm;
+}
+
+.private-msg-form {
+  grid-area: privateForm;
+}
+
+.looking-info {
+  grid-area: looking;
+}
+
+textarea#message_content {
+  border: 3px solid black;
+}
+
+.project-information .project-image {
+  display: flex;
+  justify-content: space-around;
+}

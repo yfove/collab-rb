@@ -1,135 +1,164 @@
-<% if current_user %>
-  <% if current_user.id == @project.members.where(owner: true).first.user_id %>
-    <%= link_to 'Edit this project', edit_project_path(@project) %> | <%=link_to 'Delete', project_path(@project), :method => :delete %> |
-    <%=link_to 'Back', projects_url %>
 
-  <% end %>
-<% end %>
-
-<h1><%= @project.name.titlecase %></h1>
-
-
-<h3>Owner</h3>
-<p>
-  <%= link_to (@owner.first_name.capitalize + ' ' +@owner.last_name.capitalize), user_path(@owner) %>
-</p>
-
-<h3>Collaborators</h3>
-<p>
-  <% @project.members.each do |member| %>
-    <% if member.approved == true %>
-      <p>
-        <%= link_to (member.user.name.titlecase), user_path(member.user_id) %>
-        <% if @owner == current_user && member.user != current_user %>
-        <small>
-          <%= link_to "Remove", project_applicant_path(@project.id, :member_id => member.id, :approved => false), :method => :put %>
-        </small>
-        <% end  %>
-      </p>
-    <% end %>
-  <% end %>
-</p>
-
-<% if @project.description %>
-  <h3>Description</h3>
-  <p>
-    <%= @project.description.humanize %>
-  </p>
-<% end %>
-
-<% if @categories.length > 0 %>
-  <h3>Categories</h3>
-  <p>
-    <% @categories.each do |category| %>
-      <%= category.category_type %> <br>
-    <% end %>
-  </p>
-<% end %>
-
-<% if @visitor_msgs %>
-  <% if @visitor_msgs.empty? == false %>
-    <div class="vistor-msgs">
-      <h3>Visitor Messages</h3>
-      <% @visitor_msgs.each do |msg| %>
-        <div class="message">
-          <% if current_user %>
-            <% if msg.user_id == current_user.id %>
-              <p><%= link_to "Remove Message", project_message_path(@project, msg), method: 'delete' %></p>
+<div class="project-show-container">
+    <div class="project-information">
+      <figure class="project-image">
+        <% if @project.image %>
+          <%= link_to project_path(@project) do %>
+          <% if @project.image.attached? %>
+              <%= image_tag project.image %>
+            <% else %>
+              <%= image_tag "default.jpg" %>
             <% end %>
           <% end %>
+        <% else %>
+          <%= link_to project_path(@project) do %>
+            <%= image_tag "default.jpg" %>
+          <% end %>
+        <% end %>
+      </figure>
+      <h1><%= @project.name.titlecase %></h1>
+      <% if current_user %>
+        <% if current_user.id == @project.members.where(owner: true).first.user_id %>
+          <%= link_to 'Edit Project', edit_project_path(@project) %> | <%=link_to 'Delete', project_path(@project), :method => :delete %>
+        <% end %>
+      <% end %>
 
-          <p><%= msg.content %></p>
-          <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
+    <h3>Owner</h3>
+    <p>
+      <%= link_to (@owner.first_name.capitalize + ' ' +@owner.last_name.capitalize), user_path(@owner) %>
+    </p>
+
+    <h3>Collaborators</h3>
+    <p>
+      <% @project.members.each do |member| %>
+        <% if member.approved == true %>
+          <p>
+            <%= link_to (member.user.name.titlecase), user_path(member.user_id) %>
+            <% if @owner == current_user && member.user != current_user %>
+            <small>
+              <%= link_to "Remove", project_applicant_path(@project.id, :member_id => member.id, :approved => false), :method => :put %>
+            </small>
+            <% end  %>
+          </p>
+        <% end %>
+      <% end %>
+    </p>
+
+    <% if @project.description %>
+      <h3>Description</h3>
+      <p>
+        <%= @project.description.humanize %>
+      </p>
+    <% end %>
+
+    <% if @categories.length > 0 %>
+      <h3>Categories</h3>
+      <% if @project.categories.empty? == false %>
+        <p class="categories">
+        <% @project.categories.each do |category| %>
+          <%= link_to "#{category.category_type}", category_path(category), class: "category" %>
+        <% end %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <% if current_user %>
+      <% if current_user.id == @project.members.where(owner: true).first.user_id %>
+        <div class="applicants">
+          <h3><%= link_to "Applicants", project_applicants_path(@project.id) %></h3>
         </div>
       <% end %>
-    </div>
-  <% end %>
-<% end %>
+    <% end %>
+  </div>
 
-<% if @collaborators.empty? == false %>
-  <% @collaborators.each do |member| %>
-    <% if current_user %>
-      <% if member.user_id == current_user.id %>
-        <% if @private_msgs %>
-          <% if @private_msgs.empty? == false %>
-            <div class="private-msgs">
-              <h3>Collaborator Messages</h3>
-              <% @private_msgs.each do |msg| %>
-                <div class="message">
-                  <% if msg.user_id == current_user.id %>
-                    <p><%= link_to "Remove Message", project_message_path(@project, msg), method: 'delete' %></p>
+    <% if @visitor_msgs %>
+      <% if @visitor_msgs.empty? == false %>
+        <div class="vistor-msgs">
+          <h3>Visitor Messages</h3>
+          <% @visitor_msgs.each do |msg| %>
+            <div class="message">
+              <% if current_user %>
+                <% if msg.user_id == current_user.id %>
+                  <p><%= link_to "Remove Message", project_message_path(@project, msg), method: 'delete' %></p>
+                <% end %>
+              <% end %>
+
+              <p><%= msg.content %></p>
+              <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @collaborators.empty? == false %>
+      <% @collaborators.each do |member| %>
+        <% if current_user %>
+          <% if member.user_id == current_user.id %>
+            <% if @private_msgs %>
+              <% if @private_msgs.empty? == false %>
+                <div class="private-msgs">
+                  <h3>Collaborator Messages</h3>
+                  <% @private_msgs.each do |msg| %>
+                    <div class="message">
+                      <% if msg.user_id == current_user.id %>
+                        <p><%= link_to "Remove Message", project_message_path(@project, msg), method: 'delete' %></p>
+                      <% end %>
+                      <p><%= msg.content %></p>
+                      <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
+                    </div>
                   <% end %>
-                  <p><%= msg.content %></p>
-                  <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
                 </div>
               <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+
+    <% if current_user %>
+      <div class="public-msg-form">
+        <%= render 'messages/public_form' %>
+      </div>
+    <% end %>
+
+    <% if @collaborators.empty? == false %>
+      <% @collaborators.each do |member| %>
+        <% if current_user %>
+          <% if member.user_id == current_user.id %>
+            <div class="private-msg-form">
+              <%= render 'messages/private_form' %>
             </div>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-<% end %>
 
-
-<% if current_user %>
-  <%= render 'messages/public_form' %>
-<% end %>
-
-<% if @collaborators.empty? == false %>
-  <% @collaborators.each do |member| %>
     <% if current_user %>
-      <% if member.user_id == current_user.id %>
-        <%= render 'messages/private_form' %>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-
-<% if current_user %>
-  <% if current_user.id == @project.members.where(owner: true).first.user_id %>
-    <h3><%= link_to "Applicants", project_applicants_path(@project.id) %></h3>
-  <% end %>
-<% end %>
-
-<% if current_user %>
-  <% if @collaborators.where(user_id: current_user.id).length == 0 %>
-    <h3>Looking For:</h3>
-    <% if @project.looking_for.length > 0 %>
-      <% @project.looking_for.each do |looking| %>
-        <button type="button" name="button"><%= link_to looking, project_applicant_path(@project.id, :role => looking), method: :post %></button>
+      <% if @collaborators.where(user_id: current_user.id).length == 0 %>
+      <div class="looking-info">
+        <h3>Looking For:</h3>
+        <% if @project.looking_for.length > 0 %>
+          <% @project.looking_for.each do |looking| %>
+            <button type="button" name="button"><%= link_to looking, project_applicant_path(@project.id, :role => looking), method: :post %></button>
+          <% end %>
+        <% else %>
+          <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+        <% end  %>
+      </div>
       <% end %>
     <% else %>
-      <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+    <div class="looking-info">
+      <h3>Looking For:</h3>
+      <% if @project.looking_for.length > 0 %>
+        <% @project.looking_for.each do |looking| %>
+          <button type="button" name="button"><%= looking %></button>
+        <% end %>
+      <% else %>
+        <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
+      <% end  %>
+    </div>
     <% end  %>
-  <% end %>
-<% else %>
-  <h3>Looking For:</h3>
-  <% if @project.looking_for.length > 0 %>
-    <% @project.looking_for.each do |looking| %>
-      <button type="button" name="button"><%= looking %></button>
-    <% end %>
-  <% else %>
-    <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
-  <% end  %>
-<% end  %>
+
+</div>

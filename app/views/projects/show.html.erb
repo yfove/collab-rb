@@ -89,6 +89,11 @@
         <% end %>
       </div>
     <% end %>
+  <% else %>
+    <div class="vistor-msgs">
+      <h3>Visitor Messages</h3>
+      <p>There are currently no messages.</p>
+    </div>
   <% end %>
 
   <% if @collaborators.empty? == false %>
@@ -108,6 +113,11 @@
                     <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
                   </div>
                 <% end %>
+              </div>
+            <% else %>
+              <div class="private-msgs">
+                <h3>Collaborator Messages</h3>
+                <p>There are currently no collaborator messages.</p>
               </div>
             <% end %>
           <% end %>
@@ -160,35 +170,3 @@
     <% end  %>
   </div>
   <% end  %>
-
-  <% if current_user =! nil %>
-    <% if @collaborators.where(user_id: current_user.id).length == 0 %>
-      <h3>Looking For:</h3>
-      <% if @project.looking_for.length > 0 %>
-        <% @project.looking_for.each do |looking| %>
-          <button type="button" name="button"><%= link_to looking, project_applicant_path(@project.id, :role => looking), method: :post %></button>
-        <% end %>
-      <% else %>
-        <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
-      <% end  %>
-    <% else %>
-      <h3>Looking For:</h3>
-      <% if @project.looking_for.length > 0 %>
-        <% @project.looking_for.each do |looking| %>
-          <button type="button" name="button"><%= looking %></button>
-        <% end %>
-      <% else %>
-        <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
-      <% end  %>
-    <% end  %>
-  <% else %>
-    <h3>Looking For:</h3>
-    <% if @project.looking_for.length > 0 %>
-      <% @project.looking_for.each do |looking| %>
-        <button type="button" name="button"><%= looking %></button>
-      <% end %>
-    <% else %>
-      <p>This project owner isn't looking for or hasn't specified who they want to include as a collaborator yet.</p>
-    <% end  %>
-  <% end  %>
-</div>

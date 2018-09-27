@@ -2,10 +2,10 @@
   <div class="user-information">
     <div class="user-avatar">
       <% if @user.image %>
-          <% if @user.image == '' %>
-            <%= image_tag "ps-avatar2.jpg" %>
-          <% else %>
+          <% if @user.image.attached? %>
             <%= image_tag @user.image %>
+          <% else %>
+            <%= image_tag "ps-avatar2.jpg" %>
           <% end %>
       <% else %>
         <%= image_tag "ps-avatar2.jpg" %>
@@ -136,6 +136,7 @@
               <% end %>
             </div>
             <h3><%= link_to @project.name, project_path(@project) %></h3>
+
             <% if @project.categories.empty? == false %>
               <p class="categories">
               <% @project.categories.each do |category| %>

@@ -37,3 +37,21 @@
 a.category {
   font-size: 0.9em;
 }
+
+input#user_image {
+  border:none;
+  width: 280px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+.user-info-container h2 {
+  text-transform: uppercase;
+  font-weight:bold;
+  font-size: 1.6em;
+}
+
+.project-container h2 {
+  font-size: 1.2em;
+  padding: 20px;
+}

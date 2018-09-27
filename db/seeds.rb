@@ -46,13 +46,13 @@ tp = User.create!(
   last_name: "Palef",
   email: 'tp@gmail.com',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  interests: 'David Ma'
 )
 tpproject = tp.projects.create!(
   name: 'Random',
   description: "This is a fake project",
   looking_for: [Category.pluck(:category_type).sample],
-  image: "https://placebear.com/#{rand(800)}/#{rand(800)}"
 )
 
 tp.members.create!(
@@ -74,7 +74,6 @@ bdproject = bd.projects.create!(
   name: 'Contrary',
   description: "Ooh LALA",
   looking_for: [Category.pluck(:category_type).sample],
-  image: "https://placebear.com/#{rand(800)}/#{rand(800)}"
 )
 
 bd.members.create!(

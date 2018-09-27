@@ -32,14 +32,14 @@ class ProjectsController < ApplicationController
     load_project
     @project.name = params[:project][:name]
     @project.description = params[:project][:description]
-    # @project.image = params[:project][:image]
+    @project.image = params[:project][:image]
     @categories = params[:project][:categories]
     Categorization.all.where(project_id: @project.id).destroy_all
     @project.looking_for = params[:project][:looking_for].split(',')
 
-    if params[:project][:image] != nil
-      @project.image.attach(params[:project][:image])
-    end
+    # if params[:project][:image] != nil
+    #   @project.image.attach(params[:project][:image])
+    # end
 
 
 

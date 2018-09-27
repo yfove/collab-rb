@@ -1,5 +1,4 @@
 class Project < ApplicationRecord
-  has_one_attached :image
   has_many :members, dependent: :destroy
   has_many :messages, dependent: :destroy
 

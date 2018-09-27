@@ -2,10 +2,10 @@
   <div class="user-information">
     <div class="user-avatar">
       <% if @user.image %>
-          <% if @user.image == '' %>
-            <%= image_tag "ps-avatar2.jpg" %>
-          <% else %>
+          <% if @user.image.attached? %>
             <%= image_tag @user.image %>
+          <% else %>
+            <%= image_tag "ps-avatar2.jpg" %>
           <% end %>
       <% else %>
         <%= image_tag "ps-avatar2.jpg" %>

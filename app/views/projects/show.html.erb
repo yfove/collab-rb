@@ -5,7 +5,7 @@
       <% if @project.image %>
         <%= link_to project_path(@project) do %>
         <% if @project.image.attached? %>
-            <%= image_tag project.image %>
+            <%= image_tag @project.image %>
           <% else %>
             <%= image_tag "default.jpg" %>
           <% end %>
@@ -89,6 +89,11 @@
         <% end %>
       </div>
     <% end %>
+  <% else %>
+    <div class="vistor-msgs">
+      <h3>Visitor Messages</h3>
+      <p>There are currently no messages.</p>
+    </div>
   <% end %>
 
   <% if @collaborators.empty? == false %>
@@ -108,6 +113,11 @@
                     <p>Posted by <%= link_to "#{User.find(msg.user_id).first_name.capitalize} #{User.find(msg.user_id).last_name.capitalize}", user_path(User.find(msg.user_id)) %> on <%= msg.created_at.strftime("%a %b %e, %Y") %> at <%= msg.created_at.strftime("%I:%M%p") %></p>
                   </div>
                 <% end %>
+              </div>
+            <% else %>
+              <div class="private-msgs">
+                <h3>Collaborator Messages</h3>
+                <p>There are currently no collaborator messages.</p>
               </div>
             <% end %>
           <% end %>

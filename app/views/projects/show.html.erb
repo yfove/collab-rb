@@ -161,7 +161,7 @@
   </div>
   <% end  %>
 
-  <% if current_user =! nil %>
+  <% if current_user != nil %>
     <% if @collaborators.where(user_id: current_user.id).length == 0 %>
       <h3>Looking For:</h3>
       <% if @project.looking_for.length > 0 %>

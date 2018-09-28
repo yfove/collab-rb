@@ -80,8 +80,10 @@ body {
 }
 
 .quote {
+  text-align: center;
   font-style: italic;
   font-weight: 500;
   letter-spacing: 1px;
-  font-size: 1.4em;
+  font-size: 1.2em;
+  font-stretch:  semi-condensed;
 }

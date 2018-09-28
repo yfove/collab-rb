@@ -26,6 +26,12 @@ class ProjectsController < ApplicationController
 
   def edit
     load_project
+    if @project.members.find_by(owner: true).user != current_user
+      redirect_to user_url(current_user)
+      flash.now[:notice] = "That's not your project. Sneaky Sneaky."
+    else
+      load_project
+    end
   end
 
   def update
@@ -52,11 +58,13 @@ class ProjectsController < ApplicationController
       end
     end
 
-    if @project.save
-      redirect_to project_url(@project)
-    else
-      flash[:notice] = "Invalid project information"
-      render :edit
+    if @project.members.find_by(owner: true).user == current_user
+      if @project.save
+        redirect_to project_url(@project)
+      else
+        flash[:notice] = "Invalid project information"
+        render :edit
+      end
     end
   end
 
@@ -89,13 +97,18 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Invalid project information"
       render :new
     end
-   end
+  end
 
-   def destroy
-     load_project
-     @project.destroy
-     redirect_to projects_url
-   end
+  def destroy
+    load_project
+    if @project.members.find_by(owner: true).user == current_user
+      @project.destroy
+      redirect_to projects_url
+    else
+      flash[:notice] = "Not your project"
+      redirect_to project_path(@project)
+    end
+  end
 
   def applicants
     @project = Project.find(params[:project_id])

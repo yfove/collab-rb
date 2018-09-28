@@ -65,6 +65,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to user_url(@user)
+      flash.now[:notice] = "That's not your profile. Sneaky Sneaky."
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def destroy
@@ -97,12 +103,17 @@ class UsersController < ApplicationController
       end
     end
 
-    if @user.save
-      flash.now[:notice] = "You have updated your information."
-      redirect_to user_url(@user)
+    if @user == current_user
+      if @user.save
+        flash.now[:notice] = "You have updated your information."
+        redirect_to user_url(@user)
+      else
+        flash.now[:notice] = "Failed to edit information."
+        render :edit
+      end
     else
-      flash.now[:notice] = "Failed to edit information."
-      render :edit
+      flash.now[:notice] = "That's not your profile. Sneaky Sneaky."
+      redirect_to user_url(@user)
     end
 
   end

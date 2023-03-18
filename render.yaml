@@ -1,8 +1,8 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: Collabz_production
-    user: Collabz
+    databaseName: Collabz_development
+    user: master
 
 services:
   - type: web

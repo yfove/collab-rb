@@ -1,7 +1,7 @@
 databases:
   - name: postgres
     ipAllowList: []
-    database: collabz_development
+    databaseName: Collabz_development
     user: master
 
 services:
